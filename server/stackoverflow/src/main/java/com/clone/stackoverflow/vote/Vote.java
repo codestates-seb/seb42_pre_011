@@ -1,7 +1,5 @@
 package com.clone.stackoverflow.vote;
 
-import com.clone.stackoverflow.question.Member;
-import com.clone.stackoverflow.question.Question;
 import lombok.Getter;
 import lombok.Setter;
 

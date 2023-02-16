@@ -1,7 +1,10 @@
-package com.clone.stackoverflow.question;
+package com.clone.stackoverflow.question.entity;
 
+import com.clone.stackoverflow.member.entity.Member;
 import com.clone.stackoverflow.questionTag.QuestionTag;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,6 +15,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +28,10 @@ public class Question {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private QuestonStatus questonStatus = QuestonStatus.REGISTRATION;
+    private Boolean isVote;
     private Long likeCount;
     private Long hateCount;
+    private Long viewCount;
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member;

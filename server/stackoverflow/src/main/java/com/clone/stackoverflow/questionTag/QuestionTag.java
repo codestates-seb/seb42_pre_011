@@ -1,6 +1,6 @@
 package com.clone.stackoverflow.questionTag;
 
-import com.clone.stackoverflow.question.Question;
+import com.clone.stackoverflow.question.entity.Question;
 import com.clone.stackoverflow.tag.Tag;
 import lombok.Getter;
 import lombok.Setter;
