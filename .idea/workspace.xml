@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="07f0f5dc-d830-4be9-82c2-e6bab2b9e39d" name="Changes" comment="첫번째 수정">
-      <change afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/Answer/entity/Answer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/checksums/sha1-checksums.bin" afterDir="false" />
+    <list default="true" id="07f0f5dc-d830-4be9-82c2-e6bab2b9e39d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/answer/repository/AnswerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/answer/repository/AnswerRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +51,11 @@
         </map>
       </branch-storage>
     </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feat/create-answer" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
@@ -67,6 +70,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2LlH3OQljDdJ4p3EFhJgkpukMWT" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
