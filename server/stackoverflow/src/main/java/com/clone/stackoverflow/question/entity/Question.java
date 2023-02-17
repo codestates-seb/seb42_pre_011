@@ -28,7 +28,6 @@ public class Question {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private QuestonStatus questonStatus = QuestonStatus.REGISTRATION;
-    private Boolean isVote;
     private Long likeCount;
     private Long hateCount;
     private Long viewCount;
