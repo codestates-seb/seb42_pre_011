@@ -1,7 +1,16 @@
 package com.clone.stackoverflow.member.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.validation.constraints.Size;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class MemberPatchDto {
 
     @Size(min = 2, max = 15, message = "이름 길이는 2 이상 15 이하여야 합니다.")
