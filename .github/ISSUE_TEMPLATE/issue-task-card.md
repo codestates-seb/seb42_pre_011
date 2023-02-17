@@ -1,6 +1,6 @@
 ---
 name: Issue Task Card
-about: Issue Task Card
+about: Issue Task를 작성하세요.
 title: ''
 labels: ''
 assignees: ''
