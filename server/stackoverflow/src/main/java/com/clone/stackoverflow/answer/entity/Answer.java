@@ -40,7 +40,7 @@ public class Answer {
 
     // 나중엔 ㅁㅁ년ㅁㅁ웖ㅁ일ㅁㅁ시ㅁㅁ분 이런식으로 바꿀거다.
 
-    private int modifidedAt;
+    private int modifiedAt;
     // 수정되었으면 글 옆에 (수정됨) 표시와 함께 나오도록 하겠지?
 
     @Builder
