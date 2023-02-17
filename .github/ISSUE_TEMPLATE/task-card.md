@@ -3,7 +3,7 @@ name: Task Card
 about: Task를 작성하세요.
 title: ''
 labels: ''
-assignees: ''
+assignees: hyunhoh, rainhu7, Hanjunn22
 
 ---
 
