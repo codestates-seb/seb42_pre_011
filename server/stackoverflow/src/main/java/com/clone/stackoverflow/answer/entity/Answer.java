@@ -1,4 +1,4 @@
-package com.clone.stackoverflow.Answer.entity;
+package com.clone.stackoverflow.answer.entity;
 import com.sun.istack.NotNull;
 import lombok.Builder; // 수정필요
 import lombok.Getter;
@@ -14,38 +14,38 @@ import java.time.LocalDateTime; // 수정필요
 @Entity
 @Table
 
-public class AnswerDef {
+public class Answer {
     //기본적인 시간, 수정필요
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
-    @Column(name = "answer_id", unique = true)
-    private Long answer_id;
+    @Column(name = "answerId", unique = true)
+    private Long answerId;
 // 답변의 번호
     @NotNull
-    private long group_id;
+    private long groupId;
 //잘 모르겠다.
     @NotNull
-    private long member_id;
+    private long memberId;
 // 멤버의 번호
     /* 어떻게 text들을 넣을까? */
     @NotNull
     @Column (length = 999)
-    private int like_count;
+    private int likeCount;
     // 좋아요 수가 몇 개 이상일때 어떻게 한다든지 하는 일이 있을수도 있을거같다.
     @NotNull
     @Column (length = 999)
-    private int hate_count;
+    private int hateCount;
 
     private LocalDateTime createdAt;
 
     // 나중엔 ㅁㅁ년ㅁㅁ웖ㅁ일ㅁㅁ시ㅁㅁ분 이런식으로 바꿀거다.
 
-    private int modifided_at;
+    private int modifidedAt;
     // 수정되었으면 글 옆에 (수정됨) 표시와 함께 나오도록 하겠지?
 
     @Builder
-    public AnswerDef(long answer_id){
-        this.answer_id = answer_id;
+    public Answer(long answerId){
+        this.answerId = answerId;
     }
     //추가 예정
 
@@ -64,7 +64,7 @@ public class AnswerDef {
     @OneToMany(mappedBy = "account", cascade = CascadeType.REMOVE)
     private List<Answer> answerList = new ArrayList<>();
 */
-    public AnswerDef(Long answer_id) { // 이건 글 삭제할때 아이디 번호 찾을려고
-        this.answer_id = answer_id;
+    public Answer(Long answerId) { // 이건 글 삭제할때 아이디 번호 찾을려고
+        this.answerId = answerId;
     }
 }
