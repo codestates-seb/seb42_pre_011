@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.Optional;
 
 @Service
 public class QuestionService {
@@ -32,6 +33,22 @@ public class QuestionService {
         question.setCreatedAt(LocalDateTime.now());
 
         questionRepository.save(question);
+    }
+
+    public Question findQuestion(Long questionId, Long memberId) {
+        Question question = questionRepository.findById(questionId).get();
+        Long viewCount = question.getViewCount()+1;
+        question.setViewCount(viewCount);
+        questionRepository.save(question);
+        //answerRepository.findByGroupId(question.getGroupId());
+        return question;
+    }
+
+    public void deleteQuestion(Long questionId, Long memberId) {
+        Question question = questionRepository.findById(questionId).get();
+        if(question.getMember().getUser_id() == memberId) {
+            questionRepository.deleteById(questionId);
+        }
     }
 
 }
