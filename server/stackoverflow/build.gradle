@@ -4,6 +4,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
+
 group = 'com.clone'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
@@ -38,3 +39,12 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+// 2. mapstruct
+implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+annotationProcessor "org.mapstruct:mapstruct-processor:1.4.2.Final"
+
+// lombok의 Builder와 같이 사용할 경우 추가.
+compileOnly 'org.projectlombok:lombok:1.18.22'
+annotationProcessor 'org.projectlombok:lombok:1.18.22'
+annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
