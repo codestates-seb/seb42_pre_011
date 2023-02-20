@@ -27,17 +27,17 @@ public class Question {
     private LocalDateTime modifiedAt;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private QuestonStatus questonStatus = QuestonStatus.REGISTRATION;
-    private Long likeCount;
-    private Long hateCount;
-    private Long viewCount;
+    private QuestionStatus questionStatus = QuestionStatus.REGISTRATION;
+    private Long likeCount = 0L;
+    private Long hateCount = 0L;
+    private Long viewCount = 0L;
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
     @OneToMany(mappedBy = "question")
     private List<QuestionTag> questionTags = new ArrayList<>();
 
-    public enum QuestonStatus {
+    public enum QuestionStatus {
         ANSWERED, REGISTRATION
     }
 }
