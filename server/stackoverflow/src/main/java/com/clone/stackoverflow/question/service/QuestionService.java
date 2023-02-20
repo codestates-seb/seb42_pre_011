@@ -49,7 +49,7 @@ public class QuestionService {
 
     public void deleteQuestion(Long questionId, Long memberId) {
         Question question = questionRepository.findById(questionId).get();
-        if(question.getMember().getUser_id() == memberId) {
+        if(question.getMember().getMemberId() == memberId) {
             questionRepository.deleteById(questionId);
         }
     }
