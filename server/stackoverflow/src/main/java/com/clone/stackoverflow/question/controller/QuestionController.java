@@ -19,7 +19,7 @@ import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
-@RequestMapping("/question")
+@RequestMapping("/questions")
 public class QuestionController {
     private QuestionService questionService;
     private QuestionRepository questionRepository;
