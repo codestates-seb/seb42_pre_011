@@ -33,11 +33,11 @@ dependencies {
 	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 
-	//h2 database
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	runtimeOnly 'com.h2database:h2'
-
-
+//	//h2 database
+//	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+//	runtimeOnly 'com.h2database:h2'
+//
+//
 
 }
 
