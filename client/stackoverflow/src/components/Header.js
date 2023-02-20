@@ -10,6 +10,8 @@ const HeaderContainer = styled.header`
   border-top: 3px solid hsl(27, 90%, 55%);
   display: flex;
   align-items: center;
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
+    0 2px 8px hsla(0, 0%, 0%, 0.05);
 `;
 
 const HeaderTopbarContainer = styled.div`
