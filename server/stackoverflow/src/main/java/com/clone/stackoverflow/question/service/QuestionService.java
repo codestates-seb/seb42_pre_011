@@ -3,6 +3,9 @@ package com.clone.stackoverflow.question.service;
 import com.clone.stackoverflow.question.entity.Question;
 import com.clone.stackoverflow.question.repository.QuestionRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -51,4 +54,19 @@ public class QuestionService {
         }
     }
 
+    public void patchQuestion(Question question) {
+        question.setModifiedAt(LocalDateTime.now());
+        questionRepository.save(question);
+    }
+
+    public Page<Question> searchQuestion(int page, String searchString, String sortBy, String sortDir) {
+        PageRequest pageRequest;
+        if(sortDir.equals("ASC")) {
+            pageRequest = PageRequest.of(page, 10, Sort.by(sortBy).ascending());
+        }
+        else {
+            pageRequest = PageRequest.of(page, 10, Sort.by(sortBy).descending());
+        }
+        return questionRepository.findByQuestionContentContaining(searchString, pageRequest);
+    }
 }
