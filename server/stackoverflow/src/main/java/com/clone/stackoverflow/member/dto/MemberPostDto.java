@@ -1,5 +1,6 @@
 package com.clone.stackoverflow.member.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Size;
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class MemberPostDto {
 
     @NotBlank( message  = "이름은 필수 입력 값입니다.")
