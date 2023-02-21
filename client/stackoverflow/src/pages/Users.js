@@ -1,5 +1,15 @@
+import Container from '../components/Container';
+import Sidebar from '../components/Sidebar';
+
 const Users = () => {
-  return <div>users page</div>;
+  return (
+    <>
+      <Container>
+        <Sidebar></Sidebar>
+        <div>users page</div>;
+      </Container>
+    </>
+  );
 };
 
 export default Users;

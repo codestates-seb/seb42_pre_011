@@ -1,5 +1,15 @@
+import Container from '../components/Container';
+import Sidebar from '../components/Sidebar';
+
 const Tags = () => {
-  return <div>tags page</div>;
+  return (
+    <>
+      <Container>
+        <Sidebar></Sidebar>
+        <div>tags page</div>;
+      </Container>
+    </>
+  );
 };
 
 export default Tags;

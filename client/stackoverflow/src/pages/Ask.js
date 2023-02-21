@@ -1,5 +1,13 @@
+import Container from '../components/Container';
+
 const Ask = () => {
-  return <div>ask page</div>;
+  return (
+    <>
+      <Container>
+        <div>ask page</div>
+      </Container>
+    </>
+  );
 };
 
 export default Ask;

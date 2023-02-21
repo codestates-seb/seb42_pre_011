@@ -1,5 +1,13 @@
+import Container from '../components/Container';
+
 const Login = () => {
-  return <div>login page</div>;
+  return (
+    <>
+      <Container>
+        <div>login page</div>
+      </Container>
+    </>
+  );
 };
 
 export default Login;

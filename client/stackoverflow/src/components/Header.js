@@ -61,7 +61,7 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
 
-  > .login-btn {
+  .login-btn {
     height: 32px;
     background-color: hsl(205, 46%, 92%);
     color: hsl(205, 47%, 42%);
@@ -73,7 +73,7 @@ const NavContainer = styled.nav`
     margin-left: 0.5em;
   }
 
-  > .signup-btn {
+  .signup-btn {
     height: 32px;
     background-color: hsl(206, 100%, 52%);
     color: hsl(0, 0%, 100%);
