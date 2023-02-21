@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -97,8 +98,12 @@ const Header = () => {
           </div>
         </SearchContainer>
         <NavContainer>
-          <button className="login-btn">Log in</button>
-          <button className="signup-btn">Sign up</button>
+          <Link to="/login">
+            <button className="login-btn">Log in</button>
+          </Link>
+          <Link to="signup">
+            <button className="signup-btn">Sign up</button>
+          </Link>
         </NavContainer>
       </HeaderTopbarContainer>
     </HeaderContainer>
