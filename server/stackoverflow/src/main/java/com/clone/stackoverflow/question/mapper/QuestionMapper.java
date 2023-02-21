@@ -25,7 +25,8 @@ public class QuestionMapper {
     public Question questionPostDtoToQuestion(QuestionPostDto questionPostDto) {
         Question question = new Question();
         question.setQuestionContent(questionPostDto.getQuestionContent());
-       // question.setMember(questionPostDto.getMemberId());
+        Member member = memberRepository.findById(questionPostDto.getMemberId()).get();
+        question.setMember(member);
         //태그
         return question;
     }
@@ -52,7 +53,7 @@ public class QuestionMapper {
         questionResponseDto.setLikeCount(question.getLikeCount());
         questionResponseDto.setHateCount(question.getHateCount());
         questionResponseDto.setViewCount(question.getViewCount());
-    //    questionResponseDto.setMemberId(question.getMember().getUser_id());
+        questionResponseDto.setMemberId(question.getMember().getMemberId());
     //    questionResponseDto.setIsVote();
         return questionResponseDto;
     }

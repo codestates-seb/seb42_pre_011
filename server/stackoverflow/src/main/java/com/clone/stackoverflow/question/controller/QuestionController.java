@@ -1,5 +1,6 @@
 package com.clone.stackoverflow.question.controller;
 
+import com.clone.stackoverflow.dto.SingleResponseDto;
 import com.clone.stackoverflow.question.PageInfo;
 import com.clone.stackoverflow.question.dto.QuestionPageDto;
 import com.clone.stackoverflow.question.dto.QuestionPatchDto;
@@ -39,13 +40,14 @@ public class QuestionController {
     }
 
     @GetMapping("/{question-id}/{member-id}")
-    public ResponseEntity getQuestion(@RequestParam(name = "question-id") Long questionId, @RequestParam(name = "member-id") Long memberId) {
-        questionService.findQuestion(questionId, memberId);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity getQuestion(@PathVariable(name="question-id") Long questionId, @PathVariable(name="member-id") Long memberId) {
+        Question question = questionService.findQuestion(questionId, memberId);
+        //answer추가해서 테스트 필요
+        return new ResponseEntity<>(new SingleResponseDto<>(questionMapper.questionToQuestionResponseDto(question)), HttpStatus.OK);
     }
 
     @DeleteMapping("/{question-id}/{member-id}")
-    public ResponseEntity deleteQuestion(@RequestParam(name = "question-id") Long questionId, @RequestParam(name = "member-id") Long memberId) {
+    public ResponseEntity deleteQuestion(@PathVariable(name="question-id") Long questionId, @PathVariable(name="member-id") Long memberId) {
         questionService.deleteQuestion(questionId, memberId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
