@@ -1,53 +1,89 @@
 package com.clone.stackoverflow.answer.entity;
-import com.sun.istack.NotNull;
-import lombok.Builder; // 수정필요
+import com.clone.stackoverflow.vote.Vote;
+import com.clone.stackoverflow.member.entity.Member;
+import com.clone.stackoverflow.question.entity.Question;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.clone.stackoverflow.member.entity.Member;
+import com.clone.stackoverflow.questionTag.QuestionTag;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.*;
-import java.time.LocalDateTime; // 수정필요
-//import Stackoverflow.domain.answer.entity.Answer;  답변 도메인, 수정필요
-//import stackoverflow.global.auditing.BaseTime; 설정시간, 수정필요
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table
+@Data
+@Builder
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 
 public class Answer {
-    //기본적인 시간, 수정필요
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "answerId", unique = true)
     private Long answerId;
-// 답변의 번호
-    @NotNull
+    // 답변의 번호
+
+    @Lob
+    @Column(name = "answerContent")
+    private Long answerContent;
+    //답변의 내용
     private long groupId;
-//잘 모르겠다.
-    @NotNull
+    //잘 모르겠다.
+
+    @Column(name = "answerLikeCount", length = 999)
+    private long answerLikeCount;
+    //답변의 좋아요 갯수
+
+    @Column(name = "answerHateCount", length = 999)
+    private long answerHateCount;
+    //답변의 싫어요 갯수
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "questionId")
+    private Question question;
+    // 문제번호
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "memberId")
+    private Member member;
+    //멤버
+
     private long memberId;
-// 멤버의 번호
-    /* 어떻게 text들을 넣을까? */
-    @NotNull
-    @Column (length = 999)
-    private int likeCount;
-    // 좋아요 수가 몇 개 이상일때 어떻게 한다든지 하는 일이 있을수도 있을거같다.
-    @NotNull
-    @Column (length = 999)
-    private int hateCount;
+    // 멤버의 번호
 
+    @JsonIgnore
+    @Builder.Default
+    @OneToMany(mappedBy = "answer", cascade = CascadeType.REMOVE)
+    private List<Vote> answerVotes = new ArrayList<>();
     private LocalDateTime createdAt;
-
-    // 나중엔 ㅁㅁ년ㅁㅁ웖ㅁ일ㅁㅁ시ㅁㅁ분 이런식으로 바꿀거다.
-
-    private int modifiedAt;
+    private LocalDateTime modifiedAt;
     // 수정되었으면 글 옆에 (수정됨) 표시와 함께 나오도록 하겠지?
+
 
     @Builder
     public Answer(long answerId){
         this.answerId = answerId;
     }
-    //추가 예정
+    //답변의 번호
+    @Builder
 
  /*
     private String profile;
@@ -64,7 +100,10 @@ public class Answer {
     @OneToMany(mappedBy = "account", cascade = CascadeType.REMOVE)
     private List<Answer> answerList = new ArrayList<>();
 */
-    public Answer(Long answerId) { // 이건 글 삭제할때 아이디 번호 찾을려고
-        this.answerId = answerId;
+ public Answer(Long answerContent) {
+     this.answerContent = answerContent;
     }
+
+
+
 }

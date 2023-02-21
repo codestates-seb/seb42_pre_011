@@ -27,7 +27,8 @@ public class QuestionController {
     private QuestionMapper questionMapper;
 
     @Autowired
-    public QuestionController(QuestionService questionService, QuestionRepository questionRepository, QuestionMapper questionMapper) {
+    public QuestionController(QuestionService questionService, QuestionRepository questionRepository,
+                              QuestionMapper questionMapper) {
         this.questionService = questionService;
         this.questionRepository = questionRepository;
         this.questionMapper = questionMapper;

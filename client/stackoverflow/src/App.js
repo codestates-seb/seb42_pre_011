@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
 
-function App() {
+import Header from './components/Header';
+import Ask from './pages/Ask';
+import Detail from './pages/Detail';
+import Edit from './pages/Edit';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import MyPage from './pages/MyPage';
+import Questions from './pages/Questions';
+import Signup from './pages/Signup';
+import Tags from './pages/Tags';
+import Users from './pages/Users';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header></Header>
+      <Routes>
+        <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/signup" element={<Signup></Signup>}></Route>
+        <Route path="/ask" element={<Ask></Ask>}></Route>
+        <Route path="/questions" element={<Questions></Questions>}></Route>
+        <Route path="/tags" element={<Tags></Tags>}></Route>
+        <Route path="/users" element={<Users></Users>}></Route>
+        <Route path="/edit" element={<Edit></Edit>}></Route>
+        <Route path="/mypage" element={<MyPage></MyPage>}></Route>
+        <Route path="/detail" element={<Detail></Detail>}></Route>
+      </Routes>
+    </>
   );
-}
+};
 
 export default App;

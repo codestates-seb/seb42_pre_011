@@ -4,11 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 @Getter
 public class AnswerPostDto {
-    private String content;
-    //내용물, final 쓸까?
+    private Long answerContent;
 
-    @JsonCreator
-    public AnswerPostDto(@JsonProperty("content") String content) {
-        this.content = content;
-    }
 }
