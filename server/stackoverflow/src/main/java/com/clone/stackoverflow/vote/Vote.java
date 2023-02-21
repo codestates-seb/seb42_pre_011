@@ -1,5 +1,8 @@
 package com.clone.stackoverflow.vote;
 
+import com.clone.stackoverflow.answer.entity.Answer;
+import com.clone.stackoverflow.member.entity.Member;
+import com.clone.stackoverflow.question.entity.Question;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,12 +28,6 @@ public class Vote {
 
     public enum VoteType {
         ANSWER, QUESTION
-    }
-
-    //임시클래스
-    @Entity
-    public class Answer{
-
     }
 
 }

@@ -4,6 +4,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
+
 group = 'com.clone'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
@@ -27,6 +28,16 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// Mapstruct
+	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+
+//	//h2 database
+//	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+//	runtimeOnly 'com.h2database:h2'
+//
+//
 
 }
 
