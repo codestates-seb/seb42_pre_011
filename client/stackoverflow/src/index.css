@@ -3,3 +3,11 @@
   margin: 0;
   padding: 0;
 }
+
+body {
+  min-width: auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+}
