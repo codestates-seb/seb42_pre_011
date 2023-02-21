@@ -5,7 +5,7 @@ import Container from '../components/Container';
 import Sidebar from '../components/Sidebar';
 import QuestionsList from '../components/QuestionsList';
 
-const MainContainer = styled.main`
+export const MainContainer = styled.main`
   max-width: 1100px;
   width: calc(100% - 324px);
   border: 1px solid hsl(210, 8%, 85%);
@@ -16,7 +16,7 @@ const MainContainer = styled.main`
   padding: 24px;
 `;
 
-const HeadContainer = styled.div`
+export const HeadContainer = styled.div`
   display: flex;
   margin-bottom: 12px;
   flex-wrap: wrap;
@@ -89,7 +89,7 @@ const FilterController = styled.div`
   }
 `;
 
-const Questions = () => {
+export const Questions = () => {
   return (
     <>
       <Container>
@@ -116,5 +116,3 @@ const Questions = () => {
     </>
   );
 };
-
-export default Questions;
