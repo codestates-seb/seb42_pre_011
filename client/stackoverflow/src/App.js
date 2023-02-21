@@ -7,7 +7,7 @@ import Edit from './pages/Edit';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import MyPage from './pages/MyPage';
-import Questions from './pages/Questions';
+import { Questions } from './pages/Questions';
 import Signup from './pages/Signup';
 import Tags from './pages/Tags';
 import Users from './pages/Users';
