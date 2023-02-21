@@ -7,9 +7,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.Size;
 
-@Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 public class MemberPatchDto {
 
