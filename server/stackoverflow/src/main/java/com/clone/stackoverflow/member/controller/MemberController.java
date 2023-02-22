@@ -6,19 +6,18 @@ import com.clone.stackoverflow.member.dto.MemberPatchDto;
 import com.clone.stackoverflow.member.dto.MemberPostDto;
 import com.clone.stackoverflow.member.entity.Member;
 import com.clone.stackoverflow.member.mapper.MemberMapper;
+import com.clone.stackoverflow.member.repository.MemberRepository;
 import com.clone.stackoverflow.member.service.MemberService;
+import com.clone.stackoverflow.security.JwtHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.util.List;
@@ -30,10 +29,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberController {
 
+    private final MemberRepository memberRepository;
     private final MemberService memberService;
     private final MemberMapper mapper;
+    private final JwtHelper jwtHelper;
 
-
+    @GetMapping("/info")
+    public ResponseEntity getInfoByToken(HttpServletRequest request) {
+        String headerAuth = request.getHeader("Authorization");
+        headerAuth = headerAuth.substring(7, headerAuth.length());
+        String email = jwtHelper.getEmailFromJwtToken(headerAuth);
+        Member member = memberRepository.findByEmail(email).get();
+        return new ResponseEntity(new SingleResponseDto<>(mapper.memberToMemberResponseDto(member)), HttpStatus.OK);
+    }
 
     @PostMapping("/signup")
     public ResponseEntity postMember(@Valid @RequestBody MemberPostDto requestBody) {

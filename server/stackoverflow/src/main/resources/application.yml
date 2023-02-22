@@ -21,3 +21,7 @@ spring:
 logging.level:
   org.hibernate.SQL: debug
   org.hibernate.type: trace
+
+token:
+  expiration_time: 86400000
+  secret: sodlgjkfigjkijsekifhdufgyjkzejfkhslf234567890987654sdgfgnhgjkhdfsgafsdxgcdhjfkgchlv364785960584736sdfguhdhsijsopfj

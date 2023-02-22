@@ -1,15 +1,15 @@
 package com.clone.stackoverflow.member.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Getter
 @Builder
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class MemberLoginDto {
 
     @NotBlank(message = "이메일은 공백일 수 없습니다.")
