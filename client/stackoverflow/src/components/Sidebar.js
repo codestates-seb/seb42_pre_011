@@ -44,6 +44,13 @@ const Sidebar = () => {
         <Link to="/users">
           <div className="users-link">Users</div>
         </Link>
+        {// 질문상세 테스트용
+        }
+        <Link to="/Detail">
+        <div className="users-link">Detail</div>
+      </Link>
+      {// 여기까지}
+      }
       </SidebarStickyContainer>
     </SidebarContainer>
   );
