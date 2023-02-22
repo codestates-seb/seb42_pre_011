@@ -21,6 +21,7 @@ const AskContainer = styled.div`
       background-image: url("https://cdn.sstatic.net/Img/ask/background.svg?v=2e9a8205b368");
     }
   }
+  
   .writingInfo {
     width: 852px;
     background-color: #ebf4fb;
@@ -200,7 +201,9 @@ const Ask = () => {
           }}
           value={question.title}
         ></input>
-        <button>Next</button>
+        <div className='buttons'>
+        <button className='submitButton'>Next</button>
+        </div>
       </div>
     );
   };
@@ -269,19 +272,16 @@ const Ask = () => {
         <h1>Ask a public question</h1>
         <div className="askTitleBg"></div>
       </div>
-    <div>
+    <div className='center'>
       <Title />
       <Problem />
       <Expect />
       <Tags />
-      <button
-        onClick={() => {
-          console.log(question);
-        }}
-      >
-        질문 확인
-      </button>
-    </div>
+      <div className='buttons'>
+          <button type='button' className='submitButton'>Review your question</button>
+          <button type='button' className='deleteButton'>Discard draft</button>
+        </div>
+      </div>
     </AskContainer>
   );
 }
