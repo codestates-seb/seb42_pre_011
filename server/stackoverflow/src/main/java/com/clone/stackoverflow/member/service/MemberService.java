@@ -38,21 +38,21 @@ public class MemberService {
         Member findMember = findVerifiedMember(memberId);
         return findMember;
     }
-    public Page<Member> findMembers(int page, int size, String searchKeyword) {
 
-        PageRequest pageRequest = PageRequest.of(page,size);
-        if (searchKeyword == null || searchKeyword.isBlank()) {
-            return memberRepository.findAll(PageRequest.of(page, size,
-                    Sort.by("memberId").descending()));
-        }
-        else {
-            return memberRepository.findByNameContaining(PageRequest.of(page, size,
-                    Sort.by("memberId").descending()),searchKeyword);
-        }
+    @Transactional(readOnly = true)
+    public Page<Member> findMembers(int page, int size) {
 
+        return memberRepository.findAll(PageRequest.of(page, size, Sort.by("memberId").descending()));
     }
 
+    @Transactional(readOnly = true)
+    public Page<Member> memberSearchList(String keyword, int page, int size) {
 
+        return memberRepository.findByNameContaining(keyword, PageRequest.of(page, size, Sort.by("memberId")));
+
+
+
+    }
     public void deleteMember(long memberId) {
         Member findMember = findVerifiedMember(memberId);
 
