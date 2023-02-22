@@ -244,7 +244,7 @@ const Ask = () => {
 
   const Tags = () => {
     return (
-      <div className='tagsInput'>
+      <div className='writingExpecting'>
         <h3>Tags</h3>
         <br />
         <div>
@@ -265,9 +265,11 @@ const Ask = () => {
 
   return (
     <AskContainer>
+      <div className="askTitle">
+        <h1>Ask a public question</h1>
+        <div className="askTitleBg"></div>
+      </div>
     <div>
-      <h2 className="askTitle">Ask a public question</h2>
-      <div className='askTitleBg'></div>
       <Title />
       <Problem />
       <Expect />
