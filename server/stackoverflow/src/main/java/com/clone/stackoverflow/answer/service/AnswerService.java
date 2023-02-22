@@ -20,54 +20,30 @@ import java.util.Optional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class AnswerService {
+public class
+AnswerService {
     private final AnswerRepository answerRepository;
 
-    public Answer postAnswer(Answer answer){
-        return answerRepository.save(answer);
-    }
-
-    public void deleteAnswer(Long answerId, Long memberId){
-        Answer answer = findAnswer(answerId, memberId);
-
-        answerRepository.delete(answer);
-    }
-
     public void saveAnswer(Answer answer) {
-        String time = "";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHssSSS");
-        Calendar dateTime = Calendar.getInstance();
-        time = sdf.format(dateTime.getTime());
-        String random = String.valueOf((int)(Math.random()*100));
-        Long unique = Long.parseLong(time + random);
-        answer.setGroupId(unique);
-
-        answer.setAnswerLikeCount(0L);
-        answer.setAnswerLikeCount(0L);
         answer.setCreatedAt(LocalDateTime.now());
-
-       answerRepository.save(answer);
-    }
-
-    public void patchAnswer(Answer answer) {
-        answer.setModifiedAt(LocalDateTime.now());
         answerRepository.save(answer);
     }
-    public Answer findAnswer(Long answerId, Long memberId){
-        Optional<Answer> findAnswer = answerRepository.findById(answerId);
-        return findAnswer.orElseThrow(() ->
-                new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+
+    public void deleteAnswer(Long answerId, Long memberId) {
+        Answer answer = answerRepository.findById(answerId).get();
+        if (answer.getMember().getMemberId().equals(memberId)) {
+            answerRepository.delete(answer);
+        } else {
+            throw new BusinessLogicException(ExceptionCode.NOT_ALLOWED);
+        }
     }
 
-    public Page<Answer> searchAnswer(int page, String searchString, String sortBy, String sortDir) {
-        PageRequest pageRequest;
-        if(sortDir.equals("ASC")) {
-            pageRequest = PageRequest.of(page, 10, Sort.by(sortBy).ascending());
+    public void patchAnswer(Answer answer, Long memberId) {
+        if (answer.getMember().getMemberId().equals(memberId)) {
+            answer.setModifiedAt(LocalDateTime.now());
+            answerRepository.save(answer);
+        } else {
+            throw new BusinessLogicException(ExceptionCode.NOT_ALLOWED);
         }
-        else {
-            pageRequest = PageRequest.of(page, 10, Sort.by(sortBy).descending());
-        }
-        return answerRepository.findByAnswerContentContaining(searchString, pageRequest);
     }
-
 }
