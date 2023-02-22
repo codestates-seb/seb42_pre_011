@@ -56,7 +56,7 @@ public class AnswerService {
     public Answer findAnswer(Long answerId, Long memberId){
         Optional<Answer> findAnswer = answerRepository.findById(answerId);
         return findAnswer.orElseThrow(() ->
-                new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
+                new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
     }
 
     public Page<Answer> searchAnswer(int page, String searchString, String sortBy, String sortDir) {

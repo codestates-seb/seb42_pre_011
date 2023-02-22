@@ -31,10 +31,9 @@ public class QuestionMapper {
         return question;
     }
 
-    public Question questionPatchDtoToQuestion(QuestionPatchDto questionPatchDto) {
-        Member member = memberRepository.findById(questionPatchDto.getMemberID()).get();
-        Question question = questionRepository.findById(questionPatchDto.getQuestionID()).get();
-        question.setMember(member);
+    public Question questionPatchDtoToQuestion(QuestionPatchDto questionPatchDto, Long questionId) {
+        Question question = questionRepository.findById(questionId).get();
+
         if(questionPatchDto.getQuestionContent() != null) {
             question.setQuestionContent(questionPatchDto.getQuestionContent());
         }
