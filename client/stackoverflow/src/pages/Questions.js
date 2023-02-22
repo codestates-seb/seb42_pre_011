@@ -46,7 +46,7 @@ export const HeadContainer = styled.div`
   }
 `;
 
-const DataController = styled.div`
+const QuestionsController = styled.div`
   display: flex;
   margin-bottom: 12px;
   justify-content: space-between;
@@ -101,7 +101,7 @@ export const Questions = () => {
               <Link to="/ask">Ask Question</Link>
             </div>
           </HeadContainer>
-          <DataController>
+          <QuestionsController>
             <div className="total-questions">22,222,222 questions</div>
             <FilterController>
               <div className="newest-btn">Newest</div>
@@ -109,7 +109,7 @@ export const Questions = () => {
               <div className="view-btn">View</div>
               <div className="vote-btn">Vote</div>
             </FilterController>
-          </DataController>
+          </QuestionsController>
           <QuestionsList></QuestionsList>
         </MainContainer>
       </Container>
