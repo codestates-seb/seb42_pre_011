@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import MetaTagItem from './MetaTagItem';
+import Tag from './Tag';
 
 const ListContainer = styled.ul`
   display: flex;
@@ -12,7 +12,7 @@ const ListContainer = styled.ul`
 const MetaTagsList = () => {
   return (
     <ListContainer>
-      <MetaTagItem></MetaTagItem>
+      <Tag></Tag>
     </ListContainer>
   );
 };

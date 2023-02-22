@@ -41,6 +41,7 @@ const QuestionSummary = styled.div`
     overflow-wrap: break-word;
     font-size: 1.3rem;
     hyphens: auto;
+    cursor: pointer;
   }
 
   .question-content {
