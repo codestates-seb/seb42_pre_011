@@ -1,5 +1,7 @@
 package com.clone.stackoverflow.question.service;
 
+import com.clone.stackoverflow.exception.BusinessLogicException;
+import com.clone.stackoverflow.exception.ExceptionCode;
 import com.clone.stackoverflow.question.entity.Question;
 import com.clone.stackoverflow.question.repository.QuestionRepository;
 import lombok.AllArgsConstructor;
@@ -49,8 +51,13 @@ public class QuestionService {
 
     public void deleteQuestion(Long questionId, Long memberId) {
         Question question = questionRepository.findById(questionId).get();
-        if(question.getMember().getMemberId() == memberId) {
+
+        if(question.getMember().getMemberId().equals(memberId)) {
             questionRepository.deleteById(questionId);
+            //answer 도 같이 삭제 구현 ++
+        }
+        else {
+            throw new BusinessLogicException(ExceptionCode.NOT_ALLOWED);
         }
     }
 
