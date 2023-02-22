@@ -11,9 +11,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface MemberMapper {
-    Member memberPostDtoToMember(MemberPostDto memberPostDto);
+    Member memberPostDtoToMember(MemberPostDto requestBody);
 
-    Member memberPatchDtoToMember(MemberPatchDto memberPatchDto);
+    Member memberPatchDtoToMember(MemberPatchDto requestBody);
 
     MemberResponseDto memberToMemberResponseDto(Member member);
 
