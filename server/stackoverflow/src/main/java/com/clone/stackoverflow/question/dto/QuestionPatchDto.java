@@ -10,7 +10,6 @@ import java.util.List;
 @Getter
 @Setter
 public class QuestionPatchDto {
-    private Long questionID;
     private Long memberID;
     private String questionContent;
     private List<Tag> tags = new ArrayList<>();

@@ -4,6 +4,7 @@ import com.clone.stackoverflow.question.PageInfo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+@Getter
 @AllArgsConstructor
 public class QuestionPageDto<T> {
     private T data;

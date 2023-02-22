@@ -1,6 +1,7 @@
 package com.clone.stackoverflow.question.controller;
 
 import com.clone.stackoverflow.dto.SingleResponseDto;
+import com.clone.stackoverflow.member.entity.Member;
 import com.clone.stackoverflow.question.PageInfo;
 import com.clone.stackoverflow.question.dto.QuestionPageDto;
 import com.clone.stackoverflow.question.dto.QuestionPatchDto;
@@ -53,9 +54,10 @@ public class QuestionController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PatchMapping("/question-id")
-    public ResponseEntity patchQuestion(@RequestBody QuestionPatchDto questionPatchDto) {
-        questionService.patchQuestion(questionMapper.questionPatchDtoToQuestion(questionPatchDto));
+    @PatchMapping("/{question-id}/{member-id}")
+    public ResponseEntity patchQuestion(@RequestBody QuestionPatchDto questionPatchDto, @PathVariable(name="question-id") Long questionId, @PathVariable(name="member-id") Long memberId) {
+        System.out.println("QuestionController.patchQuestion");
+        questionService.patchQuestion(questionMapper.questionPatchDtoToQuestion(questionPatchDto, questionId), memberId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -64,6 +66,19 @@ public class QuestionController {
                                          @RequestParam(defaultValue = "createdAt", name = "sortBy") String sortBy,
                                          @RequestParam(defaultValue = "DESC", name = "sortDir") String sortDir) {
         Page<Question> questionPage = questionService.searchQuestion(page - 1, searchString, sortBy, sortDir);
+        PageInfo pageInfo = new PageInfo(page - 1, 10, (int) questionPage.getTotalElements(), questionPage.getTotalPages());
+
+        List<Question> questions = questionPage.getContent();
+        List<QuestionResponseDto> response = questionMapper.questionsToQuestionResponseDto(questions);
+
+        return new ResponseEntity<>(new QuestionPageDto(response, pageInfo), HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getAllQuestions(@RequestParam int page,
+                                          @RequestParam(defaultValue = "createdAt", name = "sortBy") String sortBy,
+                                          @RequestParam(defaultValue = "DESC", name = "sortDir") String sortDir) {
+        Page<Question> questionPage = questionService.findAllQuestions(page - 1, sortBy, sortDir);
         PageInfo pageInfo = new PageInfo(page - 1, 10, (int) questionPage.getTotalElements(), questionPage.getTotalPages());
 
         List<Question> questions = questionPage.getContent();
