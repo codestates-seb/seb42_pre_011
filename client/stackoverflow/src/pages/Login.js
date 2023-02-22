@@ -4,7 +4,7 @@ const Login = () => {
   return (
     <>
       <Container>
-        <div>login page</div>
+        <div>Container 컴포넌트 안에다 작성하시면 됩니다.</div>
       </Container>
     </>
   );

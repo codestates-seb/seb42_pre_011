@@ -25,15 +25,15 @@ public class QuestionMapper {
     public Question questionPostDtoToQuestion(QuestionPostDto questionPostDto) {
         Question question = new Question();
         question.setQuestionContent(questionPostDto.getQuestionContent());
-       // question.setMember(questionPostDto.getMemberId());
+        Member member = memberRepository.findById(questionPostDto.getMemberId()).get();
+        question.setMember(member);
         //태그
         return question;
     }
 
-    public Question questionPatchDtoToQuestion(QuestionPatchDto questionPatchDto) {
-        Member member = memberRepository.findById(questionPatchDto.getMemberID()).get();
-        Question question = questionRepository.findById(questionPatchDto.getQuestionID()).get();
-        question.setMember(member);
+    public Question questionPatchDtoToQuestion(QuestionPatchDto questionPatchDto, Long questionId) {
+        Question question = questionRepository.findById(questionId).get();
+
         if(questionPatchDto.getQuestionContent() != null) {
             question.setQuestionContent(questionPatchDto.getQuestionContent());
         }
@@ -52,7 +52,7 @@ public class QuestionMapper {
         questionResponseDto.setLikeCount(question.getLikeCount());
         questionResponseDto.setHateCount(question.getHateCount());
         questionResponseDto.setViewCount(question.getViewCount());
-    //    questionResponseDto.setMemberId(question.getMember().getUser_id());
+        questionResponseDto.setMemberId(question.getMember().getMemberId());
     //    questionResponseDto.setIsVote();
         return questionResponseDto;
     }

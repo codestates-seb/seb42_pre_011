@@ -23,7 +23,7 @@ const HeaderTopbarContainer = styled.div`
   margin: 0 auto;
 `;
 
-const LogoContainer = styled.span`
+const LogoContainer = styled.div`
   width: 150px;
   height: 30px;
   background-image: url(https://cdn.sstatic.net/Img/unified/sprites.svg?v=fcc0ea44ba27);
@@ -91,7 +91,9 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderTopbarContainer>
-        <LogoContainer></LogoContainer>
+        <Link to="/">
+          <LogoContainer></LogoContainer>
+        </Link>
         <SearchContainer>
           <div>
             <input placeholder="Search..."></input>

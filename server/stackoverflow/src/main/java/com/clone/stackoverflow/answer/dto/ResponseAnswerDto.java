@@ -1,17 +1,20 @@
 package com.clone.stackoverflow.answer.dto;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@Data
+@Builder
 public class ResponseAnswerDto {
     private Long answerId;
     private Long questionId;
+
+    private Long answerContent;
+
     private long groupId;
     private Long memberId;
     private String content;

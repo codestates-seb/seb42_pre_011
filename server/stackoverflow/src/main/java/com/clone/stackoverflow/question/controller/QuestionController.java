@@ -1,5 +1,7 @@
 package com.clone.stackoverflow.question.controller;
 
+import com.clone.stackoverflow.dto.SingleResponseDto;
+import com.clone.stackoverflow.member.entity.Member;
 import com.clone.stackoverflow.question.PageInfo;
 import com.clone.stackoverflow.question.dto.QuestionPageDto;
 import com.clone.stackoverflow.question.dto.QuestionPatchDto;
@@ -26,7 +28,8 @@ public class QuestionController {
     private QuestionMapper questionMapper;
 
     @Autowired
-    public QuestionController(QuestionService questionService, QuestionRepository questionRepository, QuestionMapper questionMapper) {
+    public QuestionController(QuestionService questionService, QuestionRepository questionRepository,
+                              QuestionMapper questionMapper) {
         this.questionService = questionService;
         this.questionRepository = questionRepository;
         this.questionMapper = questionMapper;
@@ -39,20 +42,22 @@ public class QuestionController {
     }
 
     @GetMapping("/{question-id}/{member-id}")
-    public ResponseEntity getQuestion(@RequestParam(name = "question-id") Long questionId, @RequestParam(name = "member-id") Long memberId) {
-        questionService.findQuestion(questionId, memberId);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity getQuestion(@PathVariable(name="question-id") Long questionId, @PathVariable(name="member-id") Long memberId) {
+        Question question = questionService.findQuestion(questionId, memberId);
+        //answer추가해서 테스트 필요
+        return new ResponseEntity<>(new SingleResponseDto<>(questionMapper.questionToQuestionResponseDto(question)), HttpStatus.OK);
     }
 
     @DeleteMapping("/{question-id}/{member-id}")
-    public ResponseEntity deleteQuestion(@RequestParam(name = "question-id") Long questionId, @RequestParam(name = "member-id") Long memberId) {
+    public ResponseEntity deleteQuestion(@PathVariable(name="question-id") Long questionId, @PathVariable(name="member-id") Long memberId) {
         questionService.deleteQuestion(questionId, memberId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PatchMapping("/question-id")
-    public ResponseEntity patchQuestion(@RequestBody QuestionPatchDto questionPatchDto) {
-        questionService.patchQuestion(questionMapper.questionPatchDtoToQuestion(questionPatchDto));
+    @PatchMapping("/{question-id}/{member-id}")
+    public ResponseEntity patchQuestion(@RequestBody QuestionPatchDto questionPatchDto, @PathVariable(name="question-id") Long questionId, @PathVariable(name="member-id") Long memberId) {
+        System.out.println("QuestionController.patchQuestion");
+        questionService.patchQuestion(questionMapper.questionPatchDtoToQuestion(questionPatchDto, questionId), memberId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -61,6 +66,19 @@ public class QuestionController {
                                          @RequestParam(defaultValue = "createdAt", name = "sortBy") String sortBy,
                                          @RequestParam(defaultValue = "DESC", name = "sortDir") String sortDir) {
         Page<Question> questionPage = questionService.searchQuestion(page - 1, searchString, sortBy, sortDir);
+        PageInfo pageInfo = new PageInfo(page - 1, 10, (int) questionPage.getTotalElements(), questionPage.getTotalPages());
+
+        List<Question> questions = questionPage.getContent();
+        List<QuestionResponseDto> response = questionMapper.questionsToQuestionResponseDto(questions);
+
+        return new ResponseEntity<>(new QuestionPageDto(response, pageInfo), HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getAllQuestions(@RequestParam int page,
+                                          @RequestParam(defaultValue = "createdAt", name = "sortBy") String sortBy,
+                                          @RequestParam(defaultValue = "DESC", name = "sortDir") String sortDir) {
+        Page<Question> questionPage = questionService.findAllQuestions(page - 1, sortBy, sortDir);
         PageInfo pageInfo = new PageInfo(page - 1, 10, (int) questionPage.getTotalElements(), questionPage.getTotalPages());
 
         List<Question> questions = questionPage.getContent();
