@@ -4,16 +4,13 @@ import com.clone.stackoverflow.member.entity.Member;
 import com.clone.stackoverflow.member.repository.MemberRepository;
 import com.clone.stackoverflow.question.dto.QuestionPatchDto;
 import com.clone.stackoverflow.question.dto.QuestionPostDto;
-import com.clone.stackoverflow.question.dto.QuestionResponseDto;
+import com.clone.stackoverflow.question.dto.QuestionDto;
 import com.clone.stackoverflow.question.entity.Question;
 import com.clone.stackoverflow.question.repository.QuestionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 @AllArgsConstructor
@@ -25,6 +22,7 @@ public class QuestionMapper {
     public Question questionPostDtoToQuestion(QuestionPostDto questionPostDto) {
         Question question = new Question();
         question.setQuestionContent(questionPostDto.getQuestionContent());
+        System.out.println(questionPostDto.getMemberId());
         Member member = memberRepository.findById(questionPostDto.getMemberId()).get();
         question.setMember(member);
         //태그
@@ -41,26 +39,26 @@ public class QuestionMapper {
         return question;
     }
 
-    public QuestionResponseDto questionToQuestionResponseDto(Question question) {
-        QuestionResponseDto questionResponseDto = new QuestionResponseDto();
-        questionResponseDto.setQuestionId(question.getQuestionId());
-        questionResponseDto.setQuestionContent(question.getQuestionContent());
-        questionResponseDto.setGroupId(question.getGroupId());
-        questionResponseDto.setCreatedAt(question.getCreatedAt());
-        questionResponseDto.setModifiedAt(question.getModifiedAt());
-        questionResponseDto.setQuestionStatus(question.getQuestionStatus());
-        questionResponseDto.setLikeCount(question.getLikeCount());
-        questionResponseDto.setHateCount(question.getHateCount());
-        questionResponseDto.setViewCount(question.getViewCount());
-        questionResponseDto.setMemberId(question.getMember().getMemberId());
-    //    questionResponseDto.setIsVote();
-        return questionResponseDto;
+    public QuestionDto questionToQuestionResponseDto(Question question) {
+        QuestionDto questionDto = new QuestionDto();
+        questionDto.setQuestionId(question.getQuestionId());
+        questionDto.setQuestionContent(question.getQuestionContent());
+        questionDto.setGroupId(question.getGroupId());
+        questionDto.setCreatedAt(question.getCreatedAt());
+        questionDto.setModifiedAt(question.getModifiedAt());
+        questionDto.setQuestionStatus(question.getQuestionStatus());
+        questionDto.setLikeCount(question.getLikeCount());
+        questionDto.setHateCount(question.getHateCount());
+        questionDto.setViewCount(question.getViewCount());
+        questionDto.setMemberId(question.getMember().getMemberId());
+    //    questionDto.setIsVote();
+        return questionDto;
     }
 
-    public List<QuestionResponseDto> questionsToQuestionResponseDto(List<Question> questions) {
+    public List<QuestionDto> questionsToQuestionResponseDto(List<Question> questions) {
         if(questions == null) return null;
 
-        List<QuestionResponseDto> list = new ArrayList<>(questions.size());
+        List<QuestionDto> list = new ArrayList<>(questions.size());
         for(Question question : questions) {
             list.add(questionToQuestionResponseDto(question));
         }
