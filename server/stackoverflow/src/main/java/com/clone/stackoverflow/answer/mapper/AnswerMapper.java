@@ -26,8 +26,8 @@ public class AnswerMapper {
 
     public ResponseAnswerDto answerToAnswerResponseDto(List<Answer> answer){
         return ResponseAnswerDto.builder()
-                .answerId(answer.getAnswerId())
-                .answerContent(answer.getAnswerContent())
+    //            .answerId(answer.getAnswerId())
+    //            .answerContent(answer.getAnswerContent())
                 .build();
 
     }

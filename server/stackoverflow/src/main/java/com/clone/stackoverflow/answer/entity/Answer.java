@@ -66,7 +66,7 @@ public class Answer {
     private Member member;
     //멤버
 
-    private long memberId;
+    //private long memberId;
     // 멤버의 번호
 
     @JsonIgnore
