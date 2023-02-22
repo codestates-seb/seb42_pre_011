@@ -10,6 +10,10 @@ import com.clone.stackoverflow.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -58,14 +62,22 @@ public class MemberController {
 
     @GetMapping
     public ResponseEntity getMembers(@Positive @RequestParam int page,
-                                     @Positive @RequestParam int size,
-                                     @RequestParam(required = false, name = "m") String searchKeyword) {
-
-
-        Page<Member> members = memberService.findMembers(page - 1, size, searchKeyword);
+                                     @Positive @RequestParam int size) {
+        Page<Member> members = memberService.findMembers(page - 1, size);
         List<Member> content = members.getContent();
         return new ResponseEntity(new MultiResponseDto(mapper.membersToMembersResponseDto(content), members), HttpStatus.OK);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity getsearchMembers(@RequestParam int page,
+                                     @RequestParam int size,
+                                     @RequestParam(name="keyword") String keyword) {
+        Page<Member> members = memberService.memberSearchList(keyword,page - 1, size);
+        List<Member> content = members.getContent();
+        return new ResponseEntity(new MultiResponseDto(mapper.membersToMembersResponseDto(content), members), HttpStatus.OK);
+    }
+
+
 
     @DeleteMapping("/{member-id}")
     public ResponseEntity deleteMember(@PathVariable("member-id") @Positive long memberId) {
