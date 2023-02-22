@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { MainContainer } from './Questions';
 import Container from '../components/Container';
 import Sidebar from '../components/Sidebar';
+import TagItem from '../components/TagItem';
+import TagsList from '../components/TagsList';
 
 const TagsMainContainer = styled(MainContainer)`
   width: calc(100% - 164px);
@@ -84,6 +86,9 @@ const Tags = () => {
               <div className="new-btn">New</div>
             </SortController>
           </TagsController>
+          <TagsList>
+            <TagItem></TagItem>
+          </TagsList>
         </TagsMainContainer>
       </Container>
     </>

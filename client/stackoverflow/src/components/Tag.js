@@ -9,15 +9,15 @@ const ItemContainer = styled.li`
   text-align: center;
   border: 1px solid transparent;
   border-radius: 3px;
+  list-style: none;
 `;
 
-const MetaTagItem = () => {
+const Tag = () => {
   return (
     <>
-      <ItemContainer>ios</ItemContainer>
-      <ItemContainer>swift</ItemContainer>
+      <ItemContainer>javaScript</ItemContainer>
     </>
   );
 };
 
-export default MetaTagItem;
+export default Tag;
