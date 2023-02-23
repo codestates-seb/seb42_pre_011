@@ -1,78 +1,164 @@
 import Container from '../components/Container';
 import Sidebar from '../components/Sidebar';
 import styled from 'styled-components';
+import {FaPen} from 'react-icons/fa';
+import {FaStackExchange} from 'react-icons/fa';
+import {HiOutlineUserCircle} from 'react-icons/hi';
 import {MdCake} from 'react-icons/md';
 import {AiOutlineClockCircle} from 'react-icons/ai';
 import {AiOutlineSchedule} from 'react-icons/ai';
-import {HiOutlineUserCircle} from 'react-icons/hi';
-import {FaPen} from 'react-icons/fa';
-import {FaStackExchange} from 'react-icons/fa';
 
-const ProfileWrapper = styled.div`
+
+const MainContainer = styled.div`
+  /* border: 1px solid gray; */
+  height: 850px;
+  width: 1085px;
+  padding: 0px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 20px;
-  margin-bottom: 40px;
-  width: 100%;
-  justify-content: center;
-  position: relative;
-  top: -40%;
-  left: -1%;
+  
+`;
+const Topcontainer = styled.div`
+  /* border: 1px solid gray; */
+  height: 400px;
+  width: 1085px;
+  padding: 0px;
+  display: flex;
+  
 `;
 
-const ProfileContent = styled.div`
+const Profilecontainer = styled.div`
+  /* border: 1px solid gray; */
+  height: 200px;
+  width: 780px;
+  padding: 20px;
+  display: flex;
+  margin-right: auto;
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ProfileImagecontainer = styled.div`
+  /* border: 1px solid gray; */
+  height: 150px;
+  width: 200px;
+  padding: 0px;
+  display: flex;
+  margin-right: auto;
+`;
+
+const ProfileIcon = styled(HiOutlineUserCircle)`
+  font-size: 120px;
+  margin-left: 20px;
+`;
+
+
+const ProfileContentcontainer = styled.div`
+  //border: 1px solid gray;
+  height: 200px;
+  width: 700px;
+  padding:20px;
   display: flex;
   flex-direction: column;
-  position: relative;
+  justify-content: center;
+  
+
 `;
 
 const ProfileName = styled.p`
-  font-size: 24px;
   margin: 0 0 10px 0;
   font-size: 2rem;
   font-weight: medium;
 `;
 
 const ProfileInfo = styled.p`
-  font-size: 24px;
   margin: 0 0 10px 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: medium;
   color: #999;
 `;
 
-const StatsContainer = styled.div`
-  position: relative;
-  height: 100%;
+const Editcontainer = styled.div`
+  //border: 1px solid gray;
+  height: 50px;
+  width: 300px;
+  padding: 20px;
+  display: flex;
+  margin-left: auto;
 `;
 
-const StatsBox = styled.div`
-  position: absolute;
-  height: 300px;
-  width: 190px;
-  left: 160px;
-  top: 40%;
-  transform: translateY(-50%);
-  padding: 20px;
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
+const EditButtonContainer = styled.div`
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: bottom;
+  color: #666;
+  
+`;
+
+const EditButton = styled.div`
+  height: 35px;
+  width: 115px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border-color: #9EA6AD;
+  border: 1px solid #BBBFC5;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const NetworkButton = styled.div`
+  height: 35px;
+  width: 135px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #BBBFC5;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+
+const Bodycontainer = styled.div`
+  //border: 1px solid gray;
+  height: 400px;
+  width: 1085px;
+  padding: 0px;
+  display: flex;
+  margin-top: 300px;
+  margin-left: -1085px;
+  
+`;
+
+const Statscontainer = styled.div`
+  border: 1px solid #BBBFC5;
+  border-radius: 7px;
+  height: 350px;
+  width: 190px;
+  display: flex;
+  margin-left: 10px;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  
+  
+
 `;
 
 const StatsText = styled.h2`
   position: absolute;
   font-size: 1.2rem;
-  margin: 0;
-  padding: 0;
   text-align: center;
   color: #555;
-  top: -30px;
-  left: 0px;
+  top: 320px;
+  left: 560px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const StastsAnswerNumber = styled.div`
@@ -80,14 +166,16 @@ const StastsAnswerNumber = styled.div`
   font-weight: bold;
   margin: 0;
   font-size: 20px;
-  margin-bottom: 10px; /* 아래 간격 */
+  margin-bottom: 10px; 
+  margin-left: 20px;
 `;
 
 const StastsAnswerLabel = styled.div`
   font-size: 16px;
   margin: 0;
-  margin-top: 0px; /* 위 간격 */
-  margin-bottom: 50px; /* 아래 간격 */
+  margin-top: 0px; 
+  margin-bottom: 50px;
+  margin-left: 20px; 
 `;
 
 const StastsQuestionNumber = styled.div`
@@ -95,34 +183,26 @@ const StastsQuestionNumber = styled.div`
   font-weight: bold;
   margin: 0;
   font-size: 20px;
-  margin-bottom: 10px; /* 아래 간격 */
+  margin-bottom: 10px; 
+  margin-left: 20px;
 `;
 
 const StastsQuestionLabel = styled.div`
   font-size: 16px;
   margin: 0;
-  margin-top: 0px; /* 위 간격 */
-  margin-bottom: 20px; /* 아래 간격 */
+  margin-top: 0px; 
+  margin-bottom: 20px; 
+  margin-left: 20px;
 `;
 
-const AnswerContainer = styled.div`
-  position: relative;
-  height: 100%;
-`;
 
-const AnswerBox = styled.div`
-  position: absolute;
-  height: 300px;
-  width: 850px;
-  left: 400px;
-  top: 40%;
-  transform: translateY(-50%);
-  padding: 20px;
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
+const Answercontainer = styled.div`
+  border: 1px solid #BBBFC5;
+  border-radius: 7px;
+  height: 350px;
+  width: 820px;
+  margin-left: 50px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -130,19 +210,20 @@ const AnswerBox = styled.div`
 const AnswerText = styled.h2`
   position: absolute;
   font-size: 1.2rem;
-  margin: 0;
-  padding: 0;
   text-align: center;
   color: #555;
-  top: -30px;
-  left: 0px;
+  top: 320px;
+  left: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const AnswerLabel = styled.div`
   font-size: 16px;
   margin: 0;
-  margin-top: 50px; /* 위 간격 */
-  margin-bottom: 50px; /* 아래 간격 */
+  margin-top: 50px; 
+  margin-bottom: 50px; 
   text-align: center;
 `;
 
@@ -151,78 +232,55 @@ const BlueText = styled.span`
   color: #0a95ff;
 `;
 
-const ProfileIconInterval = styled(HiOutlineUserCircle)`
-  margin-right: 60px;
-  font-size: 120px;
-  font-weight: thin;
-`;
-
-const EditButton = styled.button`
-  position: relative;
-  top: 30px;
-  right: -1240px;
-  width: 150px;
-  height: 35px;
-  font-size: 13px;
-  font-weight: lighter;
-  color: #999;
-  background-color: #ffffff;
-  border-radius: 4px;
-  border: 1px solid #999;
-  cursor: pointer;
-`;
-
-const StackButton = styled.button`
-  position: relative;
-  top: 30px;
-  right: -1248px;
-  width: 150px;
-  height: 35px;
-  font-size: 13px;
-  font-weight: lighter;
-  color: #999;
-  background-color: #ffffff;
-  border-radius: 4px;
-  border: 1px solid #999;
-  cursor: pointer;
-`;
-
 const MyPage = () => {
   return (
     <>
       <Container>
-        <EditButton><FaPen/>&nbsp;&nbsp;Edit profile</EditButton>
-        <StackButton><FaStackExchange/>&nbsp;Network profile</StackButton>
-        <StatsContainer>
-        <StatsBox>
-          <StatsText>Stats</StatsText>
-          <StastsAnswerNumber>1</StastsAnswerNumber>
-          <StastsAnswerLabel>answers</StastsAnswerLabel>
-          <StastsQuestionNumber>3</StastsQuestionNumber>
-          <StastsQuestionLabel>questions</StastsQuestionLabel>
-        </StatsBox>
-        </StatsContainer>
-        <AnswerContainer>
-          <AnswerBox>
-            <AnswerText>Answer</AnswerText>
-            <AnswerLabel>You have not <BlueText>answered</BlueText> any questions</AnswerLabel>
-          </AnswerBox>
-        </AnswerContainer>
-          <Sidebar></Sidebar>
-          <ProfileWrapper>
-            <ProfileIconInterval><HiOutlineUserCircle/></ProfileIconInterval>
-          <ProfileContent>
-            <ProfileName>코드스테이츠</ProfileName>
-            <ProfileInfo>
+        <Sidebar></Sidebar>
+        <MainContainer>
+          <Topcontainer> 
+            <Profilecontainer>
+            <ProfileImagecontainer>
+              <ProfileIcon>
+                <HiOutlineUserCircle/>
+              </ProfileIcon>
+            </ProfileImagecontainer>
+            <ProfileContentcontainer>
+              <ProfileName>코드스테이츠</ProfileName>
+              <ProfileInfo>
               <MdCake/>&nbsp;Member for 3 months&nbsp;&nbsp; 
               <AiOutlineClockCircle/>&nbsp;Last seen this week&nbsp;&nbsp; 
               <AiOutlineSchedule/>&nbsp;Visited 10 days, 4 consecutive&nbsp;&nbsp;
             </ProfileInfo>
-           </ProfileContent>
-         </ProfileWrapper>
+            </ProfileContentcontainer>
+            <ProfileName></ProfileName>
+            </Profilecontainer>
+            <Editcontainer>
+            <EditButtonContainer>
+                <EditButton><FaPen/>&nbsp;&nbsp;Edit profile</EditButton>
+                <NetworkButton><FaStackExchange/>&nbsp;Network profile</NetworkButton>
+              </EditButtonContainer>
+            </Editcontainer>
+          </Topcontainer> 
+          <Bodycontainer>
+            <Statscontainer>
+              <StatsText>Stats</StatsText>
+              <StastsAnswerNumber>1</StastsAnswerNumber>
+              <StastsAnswerLabel>answers</StastsAnswerLabel>
+              <StastsQuestionNumber>3</StastsQuestionNumber>
+              <StastsQuestionLabel>questions</StastsQuestionLabel>
+
+            </Statscontainer>
+            <Answercontainer>
+              <AnswerText>Answer</AnswerText>
+              <AnswerLabel>You have not <BlueText>answered</BlueText> any questions</AnswerLabel>
+            </Answercontainer>
+          </Bodycontainer>
+        </MainContainer>
       </Container>
     </>
   );
 };
 
 export default MyPage;
+
