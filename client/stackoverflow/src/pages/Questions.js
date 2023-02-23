@@ -44,6 +44,10 @@ export const HeadContainer = styled.div`
     cursor: pointer;
     text-decoration: none;
   }
+
+  a:hover {
+    background-color: hsl(206, 100%, 40%);
+  }
 `;
 
 const QuestionsController = styled.div`
@@ -75,6 +79,11 @@ const FilterController = styled.div`
     padding: 0.8em;
     cursor: pointer;
     font-weight: normal;
+  }
+
+  div:hover {
+    background-color: hsl(210, 8%, 97.5%);
+    color: hsl(210, 8%, 35%);
   }
 
   .newest-btn {
