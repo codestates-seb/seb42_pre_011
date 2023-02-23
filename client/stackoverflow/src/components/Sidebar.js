@@ -44,10 +44,10 @@ const Sidebar = () => {
         <Link to="/users">
           <div className="users-link">Users</div>
         </Link>
-        {// 질문상세 테스트용
+        {// 질문수정 테스트용
         }
-        <Link to="/Detail">
-        <div className="users-link">Detail</div>
+        <Link to="/Edit">
+        <div className="users-link">Edit</div>
       </Link>
       {// 여기까지}
       }
