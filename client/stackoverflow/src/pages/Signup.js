@@ -63,7 +63,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  font-size: 1rem;
+  font-size: 0.85rem;
   margin-top: 5px;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -76,7 +76,7 @@ const Button = styled.button`
 const Message = styled.p`
   font-size: 0.8rem;
   color: #999;
-  text-align: center;
+  text-align: left;
   margin-top: 10px;
 `;
 
@@ -91,14 +91,14 @@ const BlueText = styled.span`
 const GoogleIconInterval = styled(FcGoogle)`
   margin-right: 5px;
 `;
-// 구글 버튼
+// 구글 버튼 컨테이너
 const GoogleButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 100px;
 `;
-
+// 구글 버튼
 const GoogleButton = styled.button`
   position: absolute;
   display: flex;
@@ -289,7 +289,6 @@ const StackOverflowCTA = styled.div`
             </Form>
           </Item>
         </Rectangle>
-        
       </Container>
     </>
   );
