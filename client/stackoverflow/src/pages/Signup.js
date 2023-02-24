@@ -5,7 +5,7 @@ import {AiOutlineFacebook} from 'react-icons/ai';
 
 const Signup = () => {
 
-  // 로그인폼
+  // sign up폼
   const Rectangle = styled.div`
   position: relative;
   display: flex;
@@ -115,6 +115,7 @@ const GoogleButton = styled.button`
   margin-top: -10px;
   top: -150px;
   border: 1px solid #ccc;
+  cursor: pointer;
 `;
 // 깃허브
 const GithubIconInterval = styled(VscGithub)`
@@ -144,6 +145,7 @@ const GithubButton = styled.button`
   margin-top: -10px;
   top: -100px;
   border: 1px solid #ccc;
+  cursor: pointer;
 `;
 //페이스북
 const FacebookIconInterval = styled(AiOutlineFacebook)`
@@ -173,6 +175,7 @@ const FacebookButton = styled.button`
   margin-top: -10px;
   top: -50px;
   border: 1px solid #ccc;
+  cursor: pointer;
 `;
 
 //스택오버플로우 문구
