@@ -5,6 +5,7 @@ import Sidebar from '../components/Sidebar';
 import QuestionsList from '../components/QuestionsList';
 import QuestionItem from '../components/QuestionItem';
 import { HeadContainer, MainContainer } from './Questions';
+import AskButton from '../components/AskButton';
 
 const Home = () => {
   return (
@@ -14,9 +15,9 @@ const Home = () => {
         <MainContainer>
           <HeadContainer>
             <h1>Top Questions</h1>
-            <div>
+            <AskButton>
               <Link to="/ask">Ask Question</Link>
-            </div>
+            </AskButton>
           </HeadContainer>
           <QuestionsList>
             <QuestionItem></QuestionItem>
