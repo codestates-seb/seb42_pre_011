@@ -56,7 +56,7 @@ public class QuestionMapper {
     }
 
     public List<QuestionDto> questionsToQuestionResponseDto(List<Question> questions) {
-        if(questions == null) return null;
+        if(questions == null) return null; //검색된게없을때
 
         List<QuestionDto> list = new ArrayList<>(questions.size());
         for(Question question : questions) {
