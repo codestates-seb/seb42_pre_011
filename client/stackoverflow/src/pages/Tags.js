@@ -64,6 +64,11 @@ const SortController = styled.div`
     border-bottom-right-radius: 3px;
     margin-right: 0;
   }
+
+  div:hover {
+    background-color: hsl(210, 8%, 97.5%);
+    color: hsl(210, 8%, 35%);
+  }
 `;
 
 const Tags = () => {

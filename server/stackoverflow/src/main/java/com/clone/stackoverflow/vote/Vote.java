@@ -26,8 +26,9 @@ public class Vote {
     @JoinColumn(name = "ANSWER_ID")
     private Answer answer;
 
+
     public enum VoteType {
-        ANSWER, QUESTION
+        LIKE, HATE
     }
 
 }

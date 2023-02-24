@@ -1,8 +1,15 @@
 package com.clone.stackoverflow.question.service;
 
+import com.clone.stackoverflow.answer.dto.AnswerResponseDto;
+import com.clone.stackoverflow.answer.entity.Answer;
+import com.clone.stackoverflow.answer.mapper.AnswerMapper;
+import com.clone.stackoverflow.answer.repository.AnswerRepository;
 import com.clone.stackoverflow.exception.BusinessLogicException;
 import com.clone.stackoverflow.exception.ExceptionCode;
+import com.clone.stackoverflow.question.dto.QuestionDto;
+import com.clone.stackoverflow.question.dto.QuestionResponseDto;
 import com.clone.stackoverflow.question.entity.Question;
+import com.clone.stackoverflow.question.mapper.QuestionMapper;
 import com.clone.stackoverflow.question.repository.QuestionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -12,17 +19,19 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class QuestionService {
 
     private QuestionRepository questionRepository;
-
-    public QuestionService(QuestionRepository questionRepository) {
-        this.questionRepository = questionRepository;
-    }
+    private AnswerRepository answerRepository;
+    private AnswerMapper answerMapper;
+    private QuestionMapper questionMapper;
 
     public void saveQuestion(Question question) {
         String time = "";
@@ -40,21 +49,28 @@ public class QuestionService {
         questionRepository.save(question);
     }
 
-    public Question findQuestion(Long questionId, Long memberId) {
+    public QuestionResponseDto findQuestion(Long questionId, Long memberId) {
         Question question = questionRepository.findById(questionId).get();
-        Long viewCount = question.getViewCount()+1;
+        Long viewCount = question.getViewCount()+1; //조회수
         question.setViewCount(viewCount);
-        questionRepository.save(question);
-        //answerRepository.findByGroupId(question.getGroupId());
-        return question;
+        questionRepository.save(question); //저장
+
+        Long groupId = question.getGroupId(); //그룹아이디를 가져와서
+        List<Answer> answers = answerRepository.findByGroupId(groupId);//그룹아이디를 가지고 answerRepo에서 검색
+        List<AnswerResponseDto> answerDtos = new ArrayList<>();//매핑한 친구들 넣을 빈 리스트 생성
+        for (Answer answer : answers) {
+            answerDtos.add(answerMapper.answerToAnswerResponseDto(answer)); //매핑
+        }
+        return new QuestionResponseDto<>(questionMapper.questionToQuestionResponseDto(question), answerDtos);
     }
 
     public void deleteQuestion(Long questionId, Long memberId) {
         Question question = questionRepository.findById(questionId).get();
+        Long groupId = question.getGroupId();
 
         if(question.getMember().getMemberId().equals(memberId)) {
             questionRepository.deleteById(questionId);
-            //answer 도 같이 삭제 구현 ++
+            //answerRepository.deleteAllByGroupId(groupId); 삭제구현.. answer 조회는 안됨.
         }
         else {
             throw new BusinessLogicException(ExceptionCode.NOT_ALLOWED);
@@ -72,8 +88,8 @@ public class QuestionService {
     }
 
     public Page<Question> searchQuestion(int page, String searchString, String sortBy, String sortDir) {
-        PageRequest pageRequest;
-        if(sortDir.equals("ASC")) {
+        PageRequest pageRequest; //페이지 만들어주는 친구
+        if(sortDir.equals("ASC")) { //오름차순
             pageRequest = PageRequest.of(page, 10, Sort.by(sortBy).ascending());
         }
         else {

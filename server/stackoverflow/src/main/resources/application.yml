@@ -5,13 +5,13 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/stackoverflow?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&useSSL=true
-    username: root
+    url:
+    username:
     password:
 
   jpa:
     hibernate:
-      ddl-auto: update # (1) ??? ?? ??
+      ddl-auto: update # (1) ??? ?? ??  update -> create 변ㄱ
     show-sql: true      # (2) SQL ?? ??
     properties:
       hibernate:
@@ -21,3 +21,7 @@ spring:
 logging.level:
   org.hibernate.SQL: debug
   org.hibernate.type: trace
+
+token:
+  expiration_time: 86400000
+  secret: sodlgjkfigjkijsekifhdufgyjkzejfkhslf234567890987654sdgfgnhgjkhdfsgafsdxgcdhjfkgchlv364785960584736sdfguhdhsijsopfj

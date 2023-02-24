@@ -14,7 +14,7 @@ const LoginContainer = styled.div`
   width: 100%;
   height: 100vh;
   flex-direction: column;
-  margin-top: -300px;
+  margin-top: -280px;
 `;
 
 //로그인 폼 컨테이너

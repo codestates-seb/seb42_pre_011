@@ -1,12 +1,8 @@
 package com.clone.stackoverflow.question.controller;
 
 import com.clone.stackoverflow.dto.SingleResponseDto;
-import com.clone.stackoverflow.member.entity.Member;
 import com.clone.stackoverflow.question.PageInfo;
-import com.clone.stackoverflow.question.dto.QuestionPageDto;
-import com.clone.stackoverflow.question.dto.QuestionPatchDto;
-import com.clone.stackoverflow.question.dto.QuestionPostDto;
-import com.clone.stackoverflow.question.dto.QuestionResponseDto;
+import com.clone.stackoverflow.question.dto.*;
 import com.clone.stackoverflow.question.entity.Question;
 import com.clone.stackoverflow.question.mapper.QuestionMapper;
 import com.clone.stackoverflow.question.repository.QuestionRepository;
@@ -17,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
@@ -43,9 +38,8 @@ public class QuestionController {
 
     @GetMapping("/{question-id}/{member-id}")
     public ResponseEntity getQuestion(@PathVariable(name="question-id") Long questionId, @PathVariable(name="member-id") Long memberId) {
-        Question question = questionService.findQuestion(questionId, memberId);
-        //answer추가해서 테스트 필요
-        return new ResponseEntity<>(new SingleResponseDto<>(questionMapper.questionToQuestionResponseDto(question)), HttpStatus.OK);
+        QuestionResponseDto question = questionService.findQuestion(questionId, memberId);
+        return new ResponseEntity<>(new SingleResponseDto<>(question), HttpStatus.OK);
     }
 
     @DeleteMapping("/{question-id}/{member-id}")
@@ -69,7 +63,7 @@ public class QuestionController {
         PageInfo pageInfo = new PageInfo(page - 1, 10, (int) questionPage.getTotalElements(), questionPage.getTotalPages());
 
         List<Question> questions = questionPage.getContent();
-        List<QuestionResponseDto> response = questionMapper.questionsToQuestionResponseDto(questions);
+        List<QuestionDto> response = questionMapper.questionsToQuestionResponseDto(questions);
 
         return new ResponseEntity<>(new QuestionPageDto(response, pageInfo), HttpStatus.OK);
     }
@@ -82,7 +76,7 @@ public class QuestionController {
         PageInfo pageInfo = new PageInfo(page - 1, 10, (int) questionPage.getTotalElements(), questionPage.getTotalPages());
 
         List<Question> questions = questionPage.getContent();
-        List<QuestionResponseDto> response = questionMapper.questionsToQuestionResponseDto(questions);
+        List<QuestionDto> response = questionMapper.questionsToQuestionResponseDto(questions);
 
         return new ResponseEntity<>(new QuestionPageDto(response, pageInfo), HttpStatus.OK);
     }
