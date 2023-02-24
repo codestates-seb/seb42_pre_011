@@ -24,10 +24,6 @@ public class VoteService {
             voteRepository.save(vote);
         }
         else {
-<<<<<<< HEAD
-=======
-            System.out.println("----------------------------------------");
->>>>>>> 1bdfcf8470da364a5402b86ca6678d1678f70fc4
             System.out.println("VoteService.vote");
             voteRepository.deleteById(voteId);
         }
