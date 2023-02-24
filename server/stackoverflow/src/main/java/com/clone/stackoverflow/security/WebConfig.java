@@ -54,6 +54,10 @@ public class WebConfig {
 =======
                     .antMatchers("/members/**")
                     .permitAll()
+                    .antMatchers("/question")
+                    .permitAll()
+                    .antMatchers("/answers")
+                    .permitAll()
                     .antMatchers(HttpMethod.PATCH, "/answers")
 >>>>>>> 1bdfcf8470da364a5402b86ca6678d1678f70fc4
                     .permitAll()

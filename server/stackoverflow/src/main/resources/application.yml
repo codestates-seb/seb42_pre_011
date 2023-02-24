@@ -1,19 +1,12 @@
 server:
-  address: localhost
   port: 8080
 
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-<<<<<<< HEAD
-    url: jdbc:mysql://localhost:3306/stackoverflow?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&useSSL=true
-    username: root
-    password: pass
-=======
+    driver-class-name:
     url:
     username:
     password:
->>>>>>> 1bdfcf8470da364a5402b86ca6678d1678f70fc4
 
   jpa:
     hibernate:
