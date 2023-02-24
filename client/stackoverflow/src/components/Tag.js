@@ -10,6 +10,12 @@ const ItemContainer = styled.li`
   border: 1px solid transparent;
   border-radius: 3px;
   list-style: none;
+  cursor: pointer;
+
+  :hover {
+    color: hsl(205, 46%, 32%);
+    background-color: hsl(205, 53%, 88%);
+  }
 `;
 
 const Tag = () => {

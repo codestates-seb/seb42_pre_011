@@ -49,7 +49,13 @@ public class WebConfig {
                     .permitAll()
                     .antMatchers(HttpMethod.POST, "/members/signup")
                     .permitAll()
+<<<<<<< HEAD
                     .antMatchers( "/answers")
+=======
+                    .antMatchers("/members/**")
+                    .permitAll()
+                    .antMatchers(HttpMethod.PATCH, "/answers")
+>>>>>>> 1bdfcf8470da364a5402b86ca6678d1678f70fc4
                     .permitAll()
                     .antMatchers( "/votes")
                     .permitAll()

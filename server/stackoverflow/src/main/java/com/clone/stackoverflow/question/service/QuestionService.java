@@ -51,8 +51,9 @@ public class QuestionService {
 
     public QuestionResponseDto findQuestion(Long questionId, Long memberId) {
         Question question = questionRepository.findById(questionId).get();
-        Long viewCount = question.getViewCount()+1;
+        Long viewCount = question.getViewCount()+1; //조회수
         question.setViewCount(viewCount);
+<<<<<<< HEAD
         questionRepository.save(question);
 
         Long groupId = question.getGroupId();
@@ -60,6 +61,15 @@ public class QuestionService {
         List<AnswerResponseDto> answerDtos = new ArrayList<>();
         for (Answer answer : answers) {
             answerDtos.add(answerMapper.answerToAnswerResponseDto(answer));
+=======
+        questionRepository.save(question); //저장
+
+        Long groupId = question.getGroupId(); //그룹아이디를 가져와서
+        List<Answer> answers = answerRepository.findByGroupId(groupId);//그룹아이디를 가지고 answerRepo에서 검색
+        List<AnswerResponseDto> answerDtos = new ArrayList<>();//매핑한 친구들 넣을 빈 리스트 생성
+        for (Answer answer : answers) {
+            answerDtos.add(answerMapper.answerToAnswerResponseDto(answer)); //매핑
+>>>>>>> 1bdfcf8470da364a5402b86ca6678d1678f70fc4
         }
         return new QuestionResponseDto<>(questionMapper.questionToQuestionResponseDto(question), answerDtos);
     }
@@ -88,8 +98,8 @@ public class QuestionService {
     }
 
     public Page<Question> searchQuestion(int page, String searchString, String sortBy, String sortDir) {
-        PageRequest pageRequest;
-        if(sortDir.equals("ASC")) {
+        PageRequest pageRequest; //페이지 만들어주는 친구
+        if(sortDir.equals("ASC")) { //오름차순
             pageRequest = PageRequest.of(page, 10, Sort.by(sortBy).ascending());
         }
         else {

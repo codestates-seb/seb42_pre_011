@@ -2,7 +2,6 @@ package com.clone.stackoverflow.answer.controller;
 import com.clone.stackoverflow.answer.dto.AnswerPatchDto;
 import com.clone.stackoverflow.answer.dto.AnswerPostDto;
 import com.clone.stackoverflow.answer.mapper.AnswerMapper;
-import com.clone.stackoverflow.answer.repository.AnswerRepository;
 import com.clone.stackoverflow.answer.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +14,10 @@ public class AnswerController {
     private AnswerService answerService;
     private AnswerMapper answerMapper;
 
+<<<<<<< HEAD
+=======
+    @Autowired
+>>>>>>> 1bdfcf8470da364a5402b86ca6678d1678f70fc4
     public AnswerController(AnswerService answerService, AnswerMapper answerMapper) {
         this.answerService = answerService;
         this.answerMapper = answerMapper;
@@ -26,8 +29,14 @@ public class AnswerController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+<<<<<<< HEAD
     @PatchMapping("/{answer-id}")
     public ResponseEntity patchAnswer(@RequestBody AnswerPatchDto answerPatchDto, @PathVariable(name="answer-id") Long answerId, @PathVariable(name="member-id") Long memberId) {
+=======
+    @PatchMapping("/{answer-id}/{member-id}")
+    public ResponseEntity patchAnswer(@RequestBody AnswerPatchDto answerPatchDto,
+                                      @PathVariable(name="answer-id") Long answerId, @PathVariable(name="member-id") Long memberId) {
+>>>>>>> 1bdfcf8470da364a5402b86ca6678d1678f70fc4
         answerService.patchAnswer(answerMapper.answerPatchDtoToAnswer(answerPatchDto, answerId), memberId);
         return new ResponseEntity<>(HttpStatus.OK);
     }

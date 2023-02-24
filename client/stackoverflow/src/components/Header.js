@@ -28,6 +28,10 @@ const LogoContainer = styled.div`
   height: 30px;
   background-image: url(https://cdn.sstatic.net/Img/unified/sprites.svg?v=fcc0ea44ba27);
   background-position: 0 -500px;
+
+  :hover {
+    background-color: hsl(210, 8%, 90%);
+  }
 `;
 
 const SearchContainer = styled.form`
@@ -73,6 +77,11 @@ const NavContainer = styled.nav`
     margin-left: 0.5em;
   }
 
+  .login-btn:hover {
+    background-color: hsl(205, 57%, 81%);
+    color: hsl(205, 46%, 32%);
+  }
+
   .signup-btn {
     height: 32px;
     background-color: hsl(206, 100%, 52%);
@@ -84,6 +93,11 @@ const NavContainer = styled.nav`
     cursor: pointer;
     margin-left: 0.5em;
     box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
+  }
+
+  .signup-btn:hover {
+    background-color: hsl(206, 100%, 40%);
+    color: hsl(0, 0%, 100%);
   }
 `;
 
