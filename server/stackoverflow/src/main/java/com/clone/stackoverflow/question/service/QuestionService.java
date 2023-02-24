@@ -53,6 +53,15 @@ public class QuestionService {
         Question question = questionRepository.findById(questionId).get();
         Long viewCount = question.getViewCount()+1; //조회수
         question.setViewCount(viewCount);
+<<<<<<< HEAD
+        questionRepository.save(question);
+
+        Long groupId = question.getGroupId();
+        List<Answer> answers = answerRepository.findByGroupId(groupId);
+        List<AnswerResponseDto> answerDtos = new ArrayList<>();
+        for (Answer answer : answers) {
+            answerDtos.add(answerMapper.answerToAnswerResponseDto(answer));
+=======
         questionRepository.save(question); //저장
 
         Long groupId = question.getGroupId(); //그룹아이디를 가져와서
@@ -60,6 +69,7 @@ public class QuestionService {
         List<AnswerResponseDto> answerDtos = new ArrayList<>();//매핑한 친구들 넣을 빈 리스트 생성
         for (Answer answer : answers) {
             answerDtos.add(answerMapper.answerToAnswerResponseDto(answer)); //매핑
+>>>>>>> 1bdfcf8470da364a5402b86ca6678d1678f70fc4
         }
         return new QuestionResponseDto<>(questionMapper.questionToQuestionResponseDto(question), answerDtos);
     }
