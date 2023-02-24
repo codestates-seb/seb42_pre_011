@@ -167,7 +167,7 @@ const Detail = () => {
           <QuestionHeader>
             <h1>this is question detail title long</h1>
             <AskButton>
-              <Link to="ask">Ask Question</Link>
+              <Link to="/ask">Ask Question</Link>
             </AskButton>
           </QuestionHeader>
           <QuestionStats>
