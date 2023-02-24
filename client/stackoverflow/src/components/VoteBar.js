@@ -41,7 +41,7 @@ const VoteUpButton = styled(VoteButton)``;
 
 const VoteDownButton = styled(VoteButton)``;
 
-const VoteCell = () => {
+const VoteBar = () => {
   return (
     <VoteBarContainer>
       <div>
@@ -61,4 +61,4 @@ const VoteCell = () => {
   );
 };
 
-export default VoteCell;
+export default VoteBar;
