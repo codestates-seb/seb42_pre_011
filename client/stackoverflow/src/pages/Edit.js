@@ -25,7 +25,7 @@ const Edit = () => {
         <div>
           <InputLabel title="Tags" />
           <Input placeholder="" padding="0.78rem 0.91rem" width="100%" />
-          <Tag />
+          {/* <Tag /> */}
         </div>
         <div>
           <InputLabel title="Edit Summary" />
