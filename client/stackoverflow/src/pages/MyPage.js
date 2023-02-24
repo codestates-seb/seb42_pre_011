@@ -15,7 +15,6 @@ const MainContainer = styled.div`
   width: 1085px;
   padding: 0px;
   display: flex;
-  
 `;
 const Topcontainer = styled.div`
   /* border: 1px solid gray; */
@@ -23,7 +22,6 @@ const Topcontainer = styled.div`
   width: 1085px;
   padding: 0px;
   display: flex;
-  
 `;
 
 const Profilecontainer = styled.div`
@@ -53,7 +51,6 @@ const ProfileIcon = styled(HiOutlineUserCircle)`
   margin-left: 20px;
 `;
 
-
 const ProfileContentcontainer = styled.div`
   //border: 1px solid gray;
   height: 200px;
@@ -62,8 +59,6 @@ const ProfileContentcontainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
-
 `;
 
 const ProfileName = styled.p`
@@ -94,7 +89,6 @@ const EditButtonContainer = styled.div`
   width: 100%;
   align-items: bottom;
   color: #666;
-  
 `;
 
 const EditButton = styled.div`
@@ -123,7 +117,6 @@ const NetworkButton = styled.div`
   align-items: center;
 `;
 
-
 const Bodycontainer = styled.div`
   //border: 1px solid gray;
   height: 400px;
@@ -132,7 +125,6 @@ const Bodycontainer = styled.div`
   display: flex;
   margin-top: 300px;
   margin-left: -1085px;
-  
 `;
 
 const Statscontainer = styled.div`
@@ -144,21 +136,16 @@ const Statscontainer = styled.div`
   margin-left: 10px;
   flex-direction: column;
   justify-content: center;
-  
-  
-
 `;
 
 const StatsText = styled.h2`
-  position: absolute;
+  position: relative;
   font-size: 1.2rem;
   text-align: center;
   color: #555;
-  top: 320px;
-  left: 560px;
+  top: -105px;
+  left: 0px;
   display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const StastsAnswerNumber = styled.div`
@@ -195,7 +182,6 @@ const StastsQuestionLabel = styled.div`
   margin-left: 20px;
 `;
 
-
 const Answercontainer = styled.div`
   border: 1px solid #BBBFC5;
   border-radius: 7px;
@@ -208,15 +194,13 @@ const Answercontainer = styled.div`
 `;
 
 const AnswerText = styled.h2`
-  position: absolute;
+  position: relative;
   font-size: 1.2rem;
   text-align: center;
   color: #555;
-  top: 320px;
-  left: 800px;
+  top: -195px;
+  left: -250px;
   display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const AnswerLabel = styled.div`
@@ -269,7 +253,6 @@ const MyPage = () => {
               <StastsAnswerLabel>answers</StastsAnswerLabel>
               <StastsQuestionNumber>3</StastsQuestionNumber>
               <StastsQuestionLabel>questions</StastsQuestionLabel>
-
             </Statscontainer>
             <Answercontainer>
               <AnswerText>Answer</AnswerText>
