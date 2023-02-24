@@ -7,6 +7,8 @@ import { MainContainer } from './Questions';
 import VoteBar from '../components/VoteBar';
 import AskButton from '../components/AskButton';
 import Tag from '../components/Tag';
+import AnswersList from '../components/AnswersList';
+import AnswerEditor from '../components/AnswerEditor';
 
 const QuestionDetailMainContainer = styled(MainContainer)`
   width: calc(100% - 164px);
@@ -151,6 +153,11 @@ const AuthorDetail = styled.div`
   }
 `;
 
+const AnswersBody = styled.div`
+  width: auto;
+  padding-top: 10px;
+`;
+
 const Detail = () => {
   return (
     <>
@@ -216,6 +223,10 @@ const Detail = () => {
                 </InfoContainer>
               </QuestionContent>
             </QuestionBody>
+            <AnswersBody>
+              <AnswersList></AnswersList>
+              <AnswerEditor></AnswerEditor>
+            </AnswersBody>
           </div>
         </QuestionDetailMainContainer>
       </Container>
