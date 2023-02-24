@@ -39,7 +39,7 @@ AnswerService {
     }
 
     public void patchAnswer(Answer answer, Long memberId) {
-        if (answer.getMember().getMemberId().equals(memberId)) {
+        if (answer.getMember().getMemberId().equals(memberId)) { //본인이 쓴 글 맞는지 확인
             answer.setModifiedAt(LocalDateTime.now());
             answerRepository.save(answer);
         } else {

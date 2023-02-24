@@ -19,6 +19,7 @@ public class VoteMapper {
     private MemberRepository memberRepository;
 
     public Vote votePostDtoToVote(VotePostDto votePostDto) {
+
         Vote vote = new Vote();
 
         Question question = questionRepository.findById(votePostDto.getQuestionId()).get();

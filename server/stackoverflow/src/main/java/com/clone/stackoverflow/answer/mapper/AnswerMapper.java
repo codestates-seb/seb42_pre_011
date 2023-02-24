@@ -35,8 +35,8 @@ public class AnswerMapper {
         return answer;
     }
     public Answer answerPatchDtoToAnswer(AnswerPatchDto answerPatchDto, Long answerId) {
-        Answer answer = answerRepository.findById(answerId).get();
-        if(answerPatchDto.getAnswerContent() != null) {
+        Answer answer = answerRepository.findById(answerId).get(); //answerId 로 answerRepo에서 조회
+        if(answerPatchDto.getAnswerContent() != null) { //값이 있으면 바꿔준다
             answer.setAnswerContent(answerPatchDto.getAnswerContent());
         }
         return answer;
