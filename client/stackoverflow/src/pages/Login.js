@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import Container from '../components/Container';
 import React, { useState } from "react";
 import styled from "styled-components";
@@ -182,14 +183,18 @@ const BlueText = styled.span`
 
 
 const Login = () => {
+
+  // 1. 이메일과 패스워드를 가져옴
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const history = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // 로그인 로직 구현
+  
+    // 1. 이메일과 비밀번호 유효성 검사
     if (email === "") {
       setEmailError("The email is not a valid email address.");
     } else {
@@ -200,11 +205,34 @@ const Login = () => {
     } else {
       setPasswordError("");
     }
-    if (email !== "" && password !== "") {
-      console.log("로그인 성공");
-    }
+  
+    // 2. 백엔드서버에 로그인 요청
+    fetch('http://3.39.174.236:8080/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // 3. 발급받은 로그인 토큰을 LocalStorage에 저장.
+        localStorage.setItem("accessToken", data.accessToken);
+  
+        // Home 페이지로 이동합니다.
+        history.push('/Home');
+      } else {
+        console.log("로그인 실패");
+        // 로그인 실패 시 처리할 코드 추가
+      }
+    })
+    .catch(error => console.error(error));
   };
-
+  
   return (
     <>
       <Container>
