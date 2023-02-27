@@ -61,20 +61,20 @@ const QuestionMeta = styled.div`
   flex-wrap: wrap;
 `;
 
-const QuestionItem = () => {
+const QuestionItem = ({ ele }) => {
   return (
     <ItemContainer>
       <QuestionStats>
-        <span className="vote-stats">1 votes</span>
+        <span className="vote-stats">{ele.likeCount} votes</span>
         <span className="answers-stats">1 answers</span>
-        <span className="view-stats">1 views</span>
+        <span className="view-stats">{ele.viewCount} views</span>
       </QuestionStats>
       <QuestionSummary>
-        <h3 className="question-title">how to make</h3>
-        <div className="question-content">this is quesion content</div>
+        <h3 className="question-title">{ele.questionContent}</h3>
+        <div className="question-content">{ele.questionContent}</div>
         <QuestionMeta>
           <MetaTagsList></MetaTagsList>
-          <Author></Author>
+          <Author memberId={ele.memberId} createdAt={ele.createdAt}></Author>
         </QuestionMeta>
       </QuestionSummary>
     </ItemContainer>
