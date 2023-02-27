@@ -35,13 +35,9 @@ public class AnswerMapper {
         return answer;
     }
     public Answer answerPatchDtoToAnswer(AnswerPatchDto answerPatchDto, Long answerId) {
-<<<<<<< HEAD
+
         Answer answer = answerRepository.findById(answerId).get();
         if(answerPatchDto.getAnswerContent() != null) {
-=======
-        Answer answer = answerRepository.findById(answerId).get(); //answerId 로 answerRepo에서 조회
-        if(answerPatchDto.getAnswerContent() != null) { //값이 있으면 바꿔준다
->>>>>>> 1bdfcf8470da364a5402b86ca6678d1678f70fc4
             answer.setAnswerContent(answerPatchDto.getAnswerContent());
         }
         return answer;
@@ -55,11 +51,15 @@ public class AnswerMapper {
         answerResponseDto.setCreatedAt(answer.getCreatedAt());
         answerResponseDto.setModifiedAt(answer.getModifiedAt());
         answerResponseDto.setMemberId(answer.getMember().getMemberId());
-
         answerResponseDto.setLikeCount(voteRepository.countAllByAnswerAndVoteTypeNot(answer, Vote.VoteType.HATE));
         answerResponseDto.setHateCount(voteRepository.countAllByAnswerAndVoteTypeNot(answer, Vote.VoteType.LIKE));
-
-    //    if(voteRepository.)
+        System.out.println("//////////////////////////////////////////////////////////////////////////////////////");
+        System.out.println(voteRepository.findByAnswerAndMember(answer, answer.getMember()));
+        if(voteRepository.findByAnswerAndMember(answer, answer.getMember()) != null) {
+            answerResponseDto.setIsVote(true);
+        } else {
+           answerResponseDto.setIsVote(false);
+        }
         return answerResponseDto;
     }
 }

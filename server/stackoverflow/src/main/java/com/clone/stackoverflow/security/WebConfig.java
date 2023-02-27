@@ -45,26 +45,26 @@ public class WebConfig {
             httpSecurity
                     .csrf().disable()
                     .authorizeHttpRequests()
-                    .antMatchers(HttpMethod.GET, "/questions/**")
+                    .antMatchers("/questions/**")
                     .permitAll()
-                    .antMatchers(HttpMethod.POST, "/members/signup")
+                    .antMatchers(HttpMethod.GET, "/members/**")
                     .permitAll()
-<<<<<<< HEAD
-                    .antMatchers( "/answers")
-=======
-                    .antMatchers("/members/**")
+                    .antMatchers(HttpMethod.POST, "/members/**")
                     .permitAll()
-                    .antMatchers("/question")
+                    .antMatchers(HttpMethod.GET, "/questions")
                     .permitAll()
-                    .antMatchers("/answers")
-                    .permitAll()
-                    .antMatchers(HttpMethod.PATCH, "/answers")
->>>>>>> 1bdfcf8470da364a5402b86ca6678d1678f70fc4
-                    .permitAll()
-                    .antMatchers( "/votes")
-                    .permitAll()
-                    .antMatchers("/**")
-                    .authenticated()
+//                    .antMatchers("/answers/**")
+//                    .permitAll()
+//                    .antMatchers( "/votes/**")
+//                    .permitAll()
+//                    .antMatchers( "/votes")
+//                    .permitAll()
+//                    .antMatchers( "/members")
+//                    .permitAll()
+//                    .antMatchers( "/answers")
+//                    .permitAll()
+//                    .antMatchers("/**")
+//                    .authenticated()q
                     .and()
                     .addFilterBefore(
                             jwtAuthenticationFilter,
