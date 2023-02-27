@@ -184,12 +184,12 @@ const BlueText = styled.span`
 
 const Login = () => {
 
-  // 1. 이메일과 패스워드를 가져옴
+  // 이메일과 패스워드를 가져옴
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -207,10 +207,12 @@ const Login = () => {
     }
   
     // 2. 백엔드서버에 로그인 요청
-    fetch('http://3.39.174.236:8080/login', {
+    fetch('https://4410-122-43-246-215.jp.ngrok.io/login', {
+      withCredentials: true,
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json;charset=utf-8"
+        , "ngrok-skip-browser-warning" : "1234"
       },
       body: JSON.stringify({
         email: email,
@@ -224,10 +226,9 @@ const Login = () => {
         localStorage.setItem("accessToken", data.accessToken);
   
         // Home 페이지로 이동합니다.
-        history.push('/Home');
+        navigate.push('/Home');
       } else {
         console.log("로그인 실패");
-        // 로그인 실패 시 처리할 코드 추가
       }
     })
     .catch(error => console.error(error));
