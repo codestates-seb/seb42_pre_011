@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Container from '../components/Container';
 import { Input } from '../components/question/Input';
 import { Button } from '../components/question/Button';
 import { InputLabel, EditorInputWrapper, EditorInput } from '../components/question/EditorInputWrapper';
@@ -9,7 +10,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-const Write = () => {
+const Ask = () => {
   const [ body1Active, setBody1Active ] = useState(false);
   const [ body2Active, setBody2Active ] = useState(false);
   const [ tagActive, setTagActive ] = useState(false);
@@ -75,11 +76,13 @@ const Write = () => {
     };
     return await axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_SERVER_URL}/boards/questions?memberId=${loginUserId}`,
+    //   url: `${process.env.REACT_APP_SERVER_URL}/questions?memberId=${loginUserId}`,
+    url: `{https://6037-122-43-246-215.jp.ngrok.io/questions/5/1}`,
       // params: {
       //   memberId: loginUserId
       // },
-      data: {
+      memberId: 6,
+      questionContent: {
         ...questionCont
       }
     })
@@ -118,9 +121,12 @@ const Write = () => {
   return (
     <>
       <Main>
-        <MainTop>
+        <AskContainer>
+            <div className='askTitle'>
           <h1>Ask a public question</h1>
-        </MainTop>
+          <div className='askTitleBg'></div>
+          </div>
+        </AskContainer>
         <MainLeftRightWrapper>
           <MainLeft>
             <GuideLine>
@@ -247,12 +253,34 @@ const Write = () => {
   )
 };
 
-export default Write;
+export default Ask;
 
 const Main = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const AskContainer = styled.div`
+  padding: 60px;
+  width: 100%;
+  .askTitle {
+    display: flex;
+    align-items: center;
+    height: 130px;
+    font-size: 27px;
+    font-weight: bold;
+    color: #232629;
+    margin-bottom: 16px;
+    .askTitleBg {
+      flex-grow: 1;
+      height: 100%;
+      background-size: contain;
+      background-position: right;
+      background-repeat: no-repeat;
+      background-image: url("https://cdn.sstatic.net/Img/ask/background.svg?v=2e9a8205b368");
+    }
+  }
+  `
 
 const MainTop = styled.div`
   display: flex;
@@ -274,8 +302,10 @@ const MainTop = styled.div`
   }
 `;
 
+
 const MainLeftRightWrapper = styled.div`
   display: flex;
+  padding: 60px;
 `;
 
 const MainLeft = styled.div`
@@ -358,6 +388,7 @@ const InputWrapper = styled.div`
 
 const ButtonWrapper = styled.div`
   display: flex;
+  padding: 40px;
   gap: 1.6rem;
 `;
 
