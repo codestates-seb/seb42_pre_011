@@ -1,5 +1,286 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import styled from "styled-components";
+import { Input } from "../components/question/Input";
+import { Button } from "../components/question/Button";
+import {
+  InputLabel,
+  EditorInputWrapper,
+  EditorInput,
+} from "../components/question/EditorInputWrapper";
+import { useEffect, useState, useRef } from "react";
+import { useForm } from "react-hook-form";
+import { Tag } from "../components/question/Tag";
+import axios from "axios";
+// import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+const Ask = () => {
+  const [body1Active, setBody1Active] = useState(false);
+  const [body2Active, setBody2Active] = useState(false);
+  const [tagActive, setTagActive] = useState(false);
+  const [tags, setTags] = useState([]);
+  const [questionCont, setQuestionCont] = useState({
+    // title: "",
+    questionContent: "",
+    // tags: [],
+  });
+  // const loginUserId = useSelector(
+  //   (state) => state.loginUserInfo.loginUserInfo?.memberId
+  // );
+  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
+
+  const titleSubmitButtonClick = (data) => {
+    if (data.title.length < 10) {
+      alert("제목을 10자 이상 입력해주세요!");
+      return;
+    }
+    setQuestionCont({
+      ...questionCont,
+      // title: data.title,
+    });
+    body1.current.getInstance().focus();
+    setBody1Active(true);
+    window.scrollTo({ top: 1100, behavior: "smooth" });
+  };
+  
+  const body1SubmitButtonClick = () => {
+    setQuestionCont({
+      ...questionCont,
+      questionContent: body1.current.getInstance().getHTML(),
+    });
+    body2.current.getInstance().focus();
+    setBody2Active(true);
+    window.scrollTo({ top: 1840, behavior: "smooth" });
+  };
+
+  const body2SubmitButtonClick = () => {
+    setQuestionCont({
+      ...questionCont,
+      questionContent: questionCont.questionContent + body2.current.getInstance().getHTML(),
+    });
+    tag.current.focus();
+    setTagActive(true);
+    window.scrollTo({ top: 2400, behavior: "smooth" });
+  };
+
+  const tagSubmitButtonClick = () => {
+    setQuestionCont({
+      ...questionCont,
+      // tags: tags,
+    });
+  };
+
+  const postButtonClick = async () => {
+    // if (questionCont.title.length < 10) {
+    //   alert("제목을 10자 이상 입력해주세요!");
+    //   return;
+    // }
+    // if (questionCont.body.length < 30) {
+    //   alert("본문 내용을 30자 이상 입력해주세요!");
+    //   return;
+    // }
+    return await axios({
+      method: "POST",
+        // url: `${process.env.REACT_APP_SERVER_URL}/questions?memberId=${loginUserId}`,
+      url: 'http://3.39.174.236:8080/questions',
+      // params: {
+      //   memberId: loginUserId
+      // },
+      data: {
+        memberId: 9,
+        // ...questionCont,
+        ...questionCont
+      },
+    })
+      .then((res) => {
+        setQuestionCont({
+          // title: '',
+          // memberId: "",
+          questionContent: "testest",
+          // tags: [],
+        });
+          // navigate(`/questions/${res.data.boardId}`);
+          navigate(`/questions`);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const discardButtonClick = () => {
+    setQuestionCont({
+      // title: "",
+      questionContent: "",
+      // tags: [],
+    });
+    navigate(`/questions`);
+  };
+
+  const body1 = useRef();
+  const body2 = useRef();
+  const tag = useRef();
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
+  }, []);
+
+  return (
+    <>
+      <Main>
+        <AskContainer>
+          <div className="askTitle">
+            <h1>Ask a public question</h1>
+            <div className="askTitleBg"></div>
+          </div>
+        </AskContainer>
+        <MainLeftRightWrapper>
+          <MainLeft>
+            <GuideLine>
+              <h2>Writing a good question</h2>
+              <p>
+                You’re ready to
+                <a
+                  href="https://stackoverflow.com/help/how-to-ask"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {" "}
+                  ask{" "}
+                </a>
+                a{" "}
+                <a
+                  href="https://stackoverflow.com/help/on-topic"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {" "}
+                  programming-related question{" "}
+                </a>
+                and this form will help guide you through the process.
+              </p>
+              <p>
+                Looking to ask a non-programming question? See
+                <a
+                  href="https://stackexchange.com/sites#technology"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {" "}
+                  the topics here{" "}
+                </a>{" "}
+                to find a relevant site.
+              </p>
+              <h5>Steps</h5>
+              <ul>
+                <li>Summarize your problem in a one-line title.</li>
+                <li>Describe your problem in more detail.</li>
+                <li>
+                  Describe what you tried and what you expected to happen.
+                </li>
+                <li>
+                  Add “tags” which help surface your question to members of the
+                  community.
+                </li>
+                <li>Review your question and post it to the site.</li>
+              </ul>
+            </GuideLine>
+            <form
+              onSubmit={handleSubmit((data) => titleSubmitButtonClick(data))}
+            >
+              <InputWrapper className="active">
+                <InputLabel
+                  title="Title"
+                  label="Be specific and imagine you’re asking a question to another person."
+                />
+                <Input
+                  placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
+                  padding="0.78rem 0.91rem"
+                  width="100%"
+                  register={register("title")}
+                  onFocus={() => {
+                    window.scrollTo({ top: 400, behavior: "smooth" });
+                  }}
+                />
+                <Button
+                  buttonFunctionType="submit"
+                  buttonType="type2"
+                  buttonName="Next"
+                  width="4.96rem"
+                  height="3.79rem"
+                />
+              </InputWrapper>
+            </form>
+            <InputWrapper className={body1Active ? "active" : null}>
+              <InputLabel
+                title="What are the details of your problem?"
+                label="Introduce the problem and expand on what you put in the title. Minimum 20 characters."
+              />
+              <EditorInput ref={body1} />
+              <Button
+                onClick={body1SubmitButtonClick}
+                buttonType="type2"
+                buttonName="Next"
+                width="4.96rem"
+                height="3.79rem"
+              />
+            </InputWrapper>
+            <InputWrapper className={body2Active ? "active" : null}>
+              <EditorInputWrapper
+                title="What did you try and what were you expecting?"
+                label="Describe what you tried, what you expected to happen, and what actually resulted. Minimum 20 characters."
+                ref={body2}
+              />
+              <Button
+                onClick={body2SubmitButtonClick}
+                buttonType="type2"
+                buttonName="Next"
+                width="4.96rem"
+                height="3.79rem"
+              />
+            </InputWrapper>
+            <div>
+              <InputWrapper className={tagActive ? "active" : null}>
+                <InputLabel
+                  title="Tags"
+                  label="Add up to 5 tags to describe what your question is about. Start typing to see suggestions."
+                />
+                <Tag ref={tag} tags={tags} setTags={setTags} />
+                <Button
+                  onClick={tagSubmitButtonClick}
+                  buttonType="type2"
+                  buttonName="Next"
+                  width="4.96rem"
+                  height="3.79rem"
+                />
+              </InputWrapper>
+            </div>
+            <ButtonWrapper>
+              <Button
+                onClick={postButtonClick}
+                buttonType="type2"
+                buttonName="Post your question"
+                width="12.98rem"
+                height="3.79rem"
+              />
+              <DiscardButton onClick={discardButtonClick}>
+                Discard draft
+              </DiscardButton>
+            </ButtonWrapper>
+          </MainLeft>
+        </MainLeftRightWrapper>
+      </Main>
+    </>
+  );
+};
+
+export default Ask;
+
+const Main = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const AskContainer = styled.div`
   padding: 60px;
@@ -21,269 +302,129 @@ const AskContainer = styled.div`
       background-image: url("https://cdn.sstatic.net/Img/ask/background.svg?v=2e9a8205b368");
     }
   }
-  
-  .writingInfo {
-    width: 852px;
-    background-color: #ebf4fb;
-    padding: 24px;
-    border: 1px solid hsl(205, 57%, 81%);
-    border-radius: 3px;
-    color: #3b4045;
-    margin-bottom: 16px;
-    h3 {
-      font-size: 21px;
-      font-weight: 400;
-      margin: 0 0 8px;
-    }
-    p {
-      font-size: 15px;
-      margin: 0 0 15px;
-    }
-    ul {
-      list-style: disc;
-      font-size: 13px;
-      h4 {
-        font-weight: bold;
-        margin: 0 0 8px;
-      }
-      li {
-        font-weight: normal;
-        margin-left: 32px;
-      }
-    }
-  }
-  .writingTitle,
-  .writingProblem,
-  .writingExpecting,
-  .writingTags {
-    display: flex;
-    flex-direction: column;
-    width: 852px;
-    background-color: #fff;
-    padding: 24px;
-    border: 1px solid #e3e6e8;
-    border-radius: 3px;
-    margin-bottom: 16px;
-    .labelTitle {
-      font-size: 15px;
-      font-weight: bold;
-      padding: 0 2px;
-    }
-    .inputWrapper {
-      position: relative;
-      input, textarea {
-        width: 100%;
-      }
-      span {
-        position: absolute;
-        color: #c2223e;
-        font-size: 20px;
-        right: 10px;
-        top: 8px;
-      }
-    }
-    label {
-      font-size: 12px;
-      margin-bottom: 6px;
-    }
-    input,
-    textarea {
-      padding: 7.8px 9.1px;
-      border: 1px solid #e3e6e8;
-      border-radius: 3px;
-      outline: none;
-      box-shadow: none;
-      &:focus {
-        border: 1px solid #0074cc;
-        box-shadow: 0 0 2px 4px #cde9fe;
-      }
-      &.error {
-        border: 1px solid #d0393e;
-        color: #000;
-        box-shadow: none;
-      }
-    }
-    .tagsName {
-      display: flex;
-      font-size: 12px;
-      margin-bottom: 6px;
-      .exampleTags {
-        font-weight: bold;
-      }
-      div {
-        span {
-          margin-left: 6px;
-          color: #3b4045;
-        }
-      }
-    }
-    .tagsInput {
-      padding: 7.8px 9.1px;
-      border: 1px solid #e3e6e8;
-      border-radius: 3px;
-      outline: none;
-      box-shadow: none;
-      &:focus-within {
-        border: 1px solid #0074cc;
-        box-shadow: 0 0 2px 4px #cde9fe;
-      }
-      input {
-        padding: 0;
-        border: 0;
-        background-color: transparent;
-        outline: none;
-        box-shadow: none;
-        width: 30%;
-      }
-      span {
-        font-size: 12px;
-        background-color: #e1ecf4;
-        color: #39749d;
-        padding: 4.8px 6px;
-        margin: 0 2px 2px 0;
-        border-radius: 3px;
-      }
-      button {
-        border: 0;
-        background-color: transparent;
-        color: #39749d;
-        font-weight: bold;
-      }
-    }
-  }
-  .buttons {
-    .submitButton {
-      padding: 10px;
-      background-color: #0a95ff;
-      color: #fff;
-      border: 0;
-      border-radius: 3px;
-      &:hover {
-        cursor: pointer;
-      }
-    }
-    .deleteButton {
-      padding: 10px;
-      background-color: #fff;
-      color: #c2223e;
-      border: 0;
-      border-radius: 3px;
-      margin-left: 16px;
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-  .error {
-    color: #d0393e;
-    font-size: 12px;
-    margin: 2px 0;
-    padding: 2px;
+`;
+
+const MainTop = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 13rem;
+  display: flex;
+  align-items: center;
+  background-image: url("/image/WriteBg.svg");
+  background-repeat: no-repeat;
+  background-position: right;
+  margin-top: -2rem;
+
+  > h1 {
+    width: 100%;
+    font-size: 2.7rem;
+    font-weight: bold;
+    color: #232629;
+    margin: 2.4rem 0 2.7rem;
   }
 `;
 
-const Ask = () => {
-  const [question, setQuestion] = useState({});
+const MainLeftRightWrapper = styled.div`
+  display: flex;
+  padding: 60px;
+`;
 
-  const Title = () => {
-    return (
-      <div className='writingTitle'>
-        <h3>Title</h3>
-        <br />
-        <div>
-          Be specific and imagine you’re asking a question to another person.
-        </div>
-        <input
-          type="text"
-          placeholder="예시"  
-          onChange={(e) => {
-            setQuestion(Object.assign(question, { title: e.target.value }));
-          }}
-          value={question.title}
-        ></input>
-        <div className='buttons'>
-        <button className='submitButton'>Next</button>
-        </div>
-      </div>
-    );
-  };
+const MainLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  margin-top: 1.6rem;
+`;
 
-  function Problem() {
-    return (
-      <div className='writingProblem'>
-        <h3>What are the details of your problem?</h3>
-        <br />
-        <div>
-          Introduce the problem and expand on what you put in the title. Minimum
-          20 characters.
-        </div>
-        <input
-          type="text"
-          onChange={(e) => {
-            setQuestion(Object.assign(question, { problem: e.target.value }));
-          }}
-        ></input>
-      </div>
-    );
-  }
-  function Expect() {
-    return (
-      <div className='writingExpecting'>
-        <h3>What did you try and what were you expecting?</h3>
-        <br />
-        <div>
-          Describe what you tried, what you expected to happen, and what
-          actually resulted. Minimum 20 characters.
-        </div>
-        <input
-          type="text"
-          onChange={(e) => {
-            setQuestion(Object.assign(question, { expect: e.target.value }));
-          }}
-        ></input>
-      </div>
-    );
+const GuideLine = styled.div`
+  display: block;
+  background-color: #ebf4fb;
+  border: 0.1rem solid #6bbbf7;
+  border-radius: 0.3rem;
+  color: #3b4045;
+  padding: 2.4rem;
+
+  > h2 {
+    font-size: 2.1rem;
+    margin-bottom: 0.8rem;
+    font-weight: 400;
   }
 
-  const Tags = () => {
-    return (
-      <div className='writingExpecting'>
-        <h3>Tags</h3>
-        <br />
-        <div>
-          Add up to 5 tags to describe what your question is about. Start typing
-          to see suggestions.
-        </div>
-        <input
-          type="text"
-          placeholder="예시"
-          onChange={(e) => {
-            setQuestion(Object.assign(question, { tags: e.target.value }));
-          }}
-          value={question.tags}
-        ></input>
-      </div>
-    );
-  };
+  > p {
+    font-size: 1.5rem;
 
-  return (
-    <AskContainer>
-      <div className="askTitle">
-        <h1>Ask a public question</h1>
-        <div className="askTitleBg"></div>
-      </div>
-    <div className='center'>
-      <Title />
-      <Problem />
-      <Expect />
-      <Tags />
-      <div className='buttons'>
-          <button type='button' className='submitButton'>Review your question</button>
-          <button type='button' className='deleteButton'>Discard draft</button>
-        </div>
-      </div>
-    </AskContainer>
-  );
-}
+    > a {
+      color: hsl(206deg 100% 40%);
+      text-decoration: none;
+      cursor: pointer;
+      font: inherit;
+    }
+  }
 
-export default Ask;
+  > h5 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  > ul {
+    list-style-type: disc;
+    margin-left: 3rem;
+
+    > li {
+      font-size: 1.3rem;
+    }
+  }
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 0.6rem;
+  background-color: #ffffff;
+  border: 0.1rem solid #e3e6e8;
+  border-radius: 0.3rem;
+  color: #3b4045;
+  padding: 2.4rem;
+
+  opacity: 0.3;
+  cursor: not-allowed;
+
+  & > * {
+    pointer-events: none;
+  }
+
+  &.active {
+    opacity: 1;
+    cursor: auto;
+
+    & > * {
+      pointer-events: auto;
+    }
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  padding: 40px;
+  gap: 1.6rem;
+`;
+
+const DiscardButton = styled.button`
+  background-color: transparent;
+  border: 0.1rem solid transparent;
+  border-radius: 0.3rem;
+  color: #c22e32;
+  font-size: 1.3rem;
+  padding: 1.04rem;
+  cursor: pointer;
+  width: 9.82rem;
+  height: 3.79rem;
+
+  &:hover {
+    background-color: #fdf2f2;
+  }
+`;
