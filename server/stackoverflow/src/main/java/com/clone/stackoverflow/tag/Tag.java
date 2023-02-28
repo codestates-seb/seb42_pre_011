@@ -16,6 +16,7 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tagId;
     private String tagName;
+    private String tagContent;
     @OneToMany(mappedBy = "tag")
     private List<QuestionTag> questionTags = new ArrayList<>();
 }
