@@ -15,7 +15,7 @@ const LoginContainer = styled.div`
   width: 100%;
   height: 100vh;
   flex-direction: column;
-  margin-top: -280px;
+  margin-top: -380px;
 `;
 
 //로그인 폼 컨테이너
@@ -209,7 +209,7 @@ const Login = () => {
     }
   
     // 백엔드서버에 로그인 요청
-    fetch('https://4410-122-43-246-215.jp.ngrok.io/login', {
+    fetch('http://3.39.174.236:8080/login', {
       withCredentials: true,
       method: 'POST',
       headers: {

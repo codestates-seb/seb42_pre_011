@@ -266,7 +266,7 @@ const Signup = () => {
       return;
     }
   
-  const url = 'https://4410-122-43-246-215.jp.ngrok.io/members/signup';
+  const url = 'http://3.39.174.236:8080/members/signup';
   const options = {
     method: 'POST',
     headers: {
