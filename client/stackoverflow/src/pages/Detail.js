@@ -202,7 +202,8 @@ const Detail = () => {
           </QuestionStats>
           <div className="detail-main">
             <QuestionBody>
-              <VoteBar></VoteBar>
+              <VoteBar
+                total={question.likeCount - question.hateCount}></VoteBar>
               <QuestionContent>
                 <DetailContainer>{question.questionContent}</DetailContainer>
                 <TagsContainer>

@@ -98,7 +98,7 @@ const AuthorDetail = styled.div`
 const Answer = ({ ele }) => {
   return (
     <AnswerContainer>
-      <VoteBar></VoteBar>
+      <VoteBar total={ele.likeCount - ele.hateCount}></VoteBar>
       <AnswerContent>
         <DetailContainer>{ele.answerContent}</DetailContainer>
         <InfoContainer>
