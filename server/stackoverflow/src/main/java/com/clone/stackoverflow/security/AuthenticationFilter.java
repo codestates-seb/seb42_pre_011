@@ -76,6 +76,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
         ResponseToken responseToken = new ResponseToken();
         responseToken.setToken(token);
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.getWriter().write(new ObjectMapper().writeValueAsString(responseToken));
     }
 

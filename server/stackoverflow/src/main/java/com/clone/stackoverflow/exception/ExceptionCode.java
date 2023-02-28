@@ -6,7 +6,8 @@ import org.springframework.http.HttpStatus;
 public enum ExceptionCode {
     MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "Member not found"),
     MEMBER_EXISTS(HttpStatus.CONFLICT, "Member exists"),
-    NOT_ALLOWED(HttpStatus.UNAUTHORIZED, "You are not allowed");
+    NOT_ALLOWED(HttpStatus.UNAUTHORIZED, "You are not allowed"),
+    TAG_NOT_FOUND(HttpStatus.NOT_FOUND, "Tag not found");
 
     @Getter
     private HttpStatus code;

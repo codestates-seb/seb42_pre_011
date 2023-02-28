@@ -51,11 +51,15 @@ public class AnswerMapper {
         answerResponseDto.setCreatedAt(answer.getCreatedAt());
         answerResponseDto.setModifiedAt(answer.getModifiedAt());
         answerResponseDto.setMemberId(answer.getMember().getMemberId());
-
         answerResponseDto.setLikeCount(voteRepository.countAllByAnswerAndVoteTypeNot(answer, Vote.VoteType.HATE));
         answerResponseDto.setHateCount(voteRepository.countAllByAnswerAndVoteTypeNot(answer, Vote.VoteType.LIKE));
-
-    //    if(voteRepository.)
+        System.out.println("//////////////////////////////////////////////////////////////////////////////////////");
+        System.out.println(voteRepository.findByAnswerAndMember(answer, answer.getMember()));
+        if(voteRepository.findByAnswerAndMember(answer, answer.getMember()) != null) {
+            answerResponseDto.setIsVote(true);
+        } else {
+           answerResponseDto.setIsVote(false);
+        }
         return answerResponseDto;
     }
 }
