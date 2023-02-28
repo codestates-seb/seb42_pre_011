@@ -233,7 +233,7 @@ const Detail = () => {
               </QuestionContent>
             </QuestionBody>
             <AnswersBody>
-              <AnswersList></AnswersList>
+              <AnswersList answers={answers}></AnswersList>
               <AnswerEditor></AnswerEditor>
             </AnswersBody>
           </div>

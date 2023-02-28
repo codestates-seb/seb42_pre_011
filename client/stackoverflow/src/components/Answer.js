@@ -95,17 +95,12 @@ const AuthorDetail = styled.div`
   }
 `;
 
-const Answer = () => {
+const Answer = ({ ele }) => {
   return (
     <AnswerContainer>
       <VoteBar></VoteBar>
       <AnswerContent>
-        <DetailContainer>
-          How do I display an alert dialog in flutter without user interaction?
-          I have a Widget that shows a ListView. When a specific condition is
-          true, I want to display an alert dialog within the same widget This is
-          answer
-        </DetailContainer>
+        <DetailContainer>{ele.answerContent}</DetailContainer>
         <InfoContainer>
           <EditContainer>
             <button>Share</button>
@@ -114,7 +109,7 @@ const Answer = () => {
           </EditContainer>
           <AuthorContainer>
             <AuthorAnsweredTime>
-              answered<span>Jun 5, 2018 at 13:26</span>
+              answered<span>{ele.createdAt}</span>
             </AuthorAnsweredTime>
             <AuthorAvatar>
               <img
@@ -122,7 +117,7 @@ const Answer = () => {
                 alt="Cris's avatar"></img>
             </AuthorAvatar>
             <AuthorDetail>
-              <a>Cris</a>
+              <a>{ele.memberId}</a>
             </AuthorDetail>
           </AuthorContainer>
         </InfoContainer>
