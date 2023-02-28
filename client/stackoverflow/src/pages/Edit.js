@@ -31,7 +31,7 @@ const Edit = (props) => {
 const saveEditButtonClick = async () => {
   await axios({
     method: 'PATCH',
-    url: 'https://4410-122-43-246-215.jp.ngrok.io/questions/24/9',
+    url: 'http://3.39.174.236:8080/questions/24/9',
     // url: `${process.env.REACT_APP_SERVER_URL}/questions/${questionId}/${memberId}`,
     data: {
       // title,

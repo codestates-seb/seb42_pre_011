@@ -82,7 +82,7 @@ const Ask = () => {
     return await axios({
       method: "POST",
         // url: `${process.env.REACT_APP_SERVER_URL}/questions?memberId=${loginUserId}`,
-      url: 'https://4410-122-43-246-215.jp.ngrok.io/questions',
+      url: 'http://3.39.174.236:8080/questions',
       // params: {
       //   memberId: loginUserId
       // },
