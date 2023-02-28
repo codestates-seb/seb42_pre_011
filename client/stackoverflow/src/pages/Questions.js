@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import Container from '../components/Container';
 import Sidebar from '../components/Sidebar';
@@ -80,6 +82,15 @@ const FilterController = styled.div`
 `;
 
 export const Questions = () => {
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'http://3.39.174.236:8080/questions?page=1',
+    }).then(res => setQuestions(res.data.data));
+  }, []);
+
   return (
     <>
       <Container>
@@ -92,7 +103,7 @@ export const Questions = () => {
             </AskButton>
           </HeadContainer>
           <QuestionsController>
-            <div className="total-questions">22,222,222 questions</div>
+            <div className="total-questions">{questions.length} questions</div>
             <FilterController>
               <div className="newest-btn">Newest</div>
               <div className="unanswered-btn">Unanswered</div>
@@ -100,7 +111,7 @@ export const Questions = () => {
               <div className="vote-btn">Vote</div>
             </FilterController>
           </QuestionsController>
-          <QuestionsList></QuestionsList>
+          <QuestionsList questions={questions}></QuestionsList>
         </MainContainer>
       </Container>
     </>
