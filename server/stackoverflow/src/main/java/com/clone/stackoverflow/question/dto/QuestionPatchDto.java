@@ -1,6 +1,5 @@
 package com.clone.stackoverflow.question.dto;
-
-import com.clone.stackoverflow.tag.Tag;
+import com.clone.stackoverflow.tag.entity.Tag;
 import lombok.Getter;
 import lombok.Setter;
 
