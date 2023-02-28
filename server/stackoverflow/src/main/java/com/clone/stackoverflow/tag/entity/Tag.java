@@ -18,7 +18,6 @@ public class Tag {
     private Long tagId;
     private String tagName;
     private String tagContent;
-<<<<<<< HEAD:server/stackoverflow/src/main/java/com/clone/stackoverflow/tag/entity/Tag.java
 
     public Tag(String tag, String s) {
     }

@@ -5,32 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07f0f5dc-d830-4be9-82c2-e6bab2b9e39d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/tag/controller/TagController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/tag/dto/TagPostDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/tag/dto/TagResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/tag/entity/Tag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/tag/mapper/TagMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/tag/repository/TagRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/tag/service/TagService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/.gradle/7.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/stackoverflow/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/stackoverflow/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/stackoverflow/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/stackoverflow/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/exception/ExceptionCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/exception/ExceptionCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/question/dto/QuestionPatchDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/question/dto/QuestionPatchDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/question/dto/QuestionPostDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/question/dto/QuestionPostDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/questionTag/QuestionTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/questionTag/QuestionTag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/tag/Tag.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/tag/entity/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/java/com/clone/stackoverflow/tag/entity/Tag.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/stackoverflow/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/stackoverflow/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,23 +36,7 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="stackoverflow" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="stackoverflow" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="stackoverflow" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -121,26 +90,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/PUDING/IdeaProjects/seb42_pre_011",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "MTConfigurable",
-    "spring.configuration.checksum": "c5483bccb9bb858d1abf6d1f3ee739eb",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/PUDING/IdeaProjects/seb42_pre_011&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MTConfigurable&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;c5483bccb9bb858d1abf6d1f3ee739eb&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Spring Boot.StackoverflowApplication">
     <configuration name="stackoverflow [bootJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
