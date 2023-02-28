@@ -95,7 +95,7 @@ public class QuestionService {
         else {
             pageRequest = PageRequest.of(page, 10, Sort.by(sortBy).descending());
         }
-        return questionRepository.findByQuestionContentContaining(searchString, pageRequest);
+        return questionRepository.findByQuestionTitleContainingOrQuestionContentContaining(searchString, searchString, pageRequest);
     }
 
     public Page<Question> findAllQuestions(int page, String sortBy, String sortDir) {
