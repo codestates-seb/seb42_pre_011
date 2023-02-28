@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class MemberPatchDto {
 
     private Long memberId;
