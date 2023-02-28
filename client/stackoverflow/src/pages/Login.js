@@ -194,19 +194,21 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
   
-    // 1. 이메일과 비밀번호 유효성 검사
+    // 이메일과 비밀번호 유효성 검사
     if (email === "") {
       setEmailError("The email is not a valid email address.");
     } else {
       setEmailError("");
     }
     if (password === "") {
-      setPasswordError("Password is incorrect.");
+      setPasswordError("Password is required.");
+    } else if (password.length < 8) {
+      setPasswordError("Password must be at least 8 characters.");
     } else {
       setPasswordError("");
     }
   
-    // 2. 백엔드서버에 로그인 요청
+    // 백엔드서버에 로그인 요청
     fetch('https://4410-122-43-246-215.jp.ngrok.io/login', {
       withCredentials: true,
       method: 'POST',
@@ -219,20 +221,26 @@ const Login = () => {
         password: password
       })
     })
-    .then(response => response.json())
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else if (response.status === 401) {
+        throw new Error('email 또는 password가 일치하지 않습니다.');
+      }
+    })  
     .then(data => {
-      if (data.success) {
-        // 3. 발급받은 로그인 토큰을 LocalStorage에 저장.
+      if (data) {
         localStorage.setItem("accessToken", data.accessToken);
-  
-        // Home 페이지로 이동합니다.
-        navigate.push('/Home');
+        navigate('/');
       } else {
-        console.log("로그인 실패");
+        console.error('No data returned from server');
       }
     })
-    .catch(error => console.error(error));
-  };
+    .catch((error) => {
+      console.error('There was a problem with the fetch operation:', error);
+      alert(error.message);
+    });
+};
   
   return (
     <>

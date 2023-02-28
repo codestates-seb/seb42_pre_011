@@ -266,7 +266,7 @@ const Signup = () => {
       return;
     }
   
-    const url = 'https://4410-122-43-246-215.jp.ngrok.io/members/signup';
+  const url = 'https://4410-122-43-246-215.jp.ngrok.io/members/signup';
   const options = {
     method: 'POST',
     headers: {
@@ -282,13 +282,13 @@ const Signup = () => {
       } else if (response.status === 409) {
         throw new Error('중복된 이메일입니다.');
       }
-      throw new Error('Network response was not ok.');
+      
     })
     .then((data) => {
       localStorage.setItem('signupInfo', JSON.stringify(data));
       alert('회원가입이 완료되었습니다.');
-      // Home 페이지로 이동합니다.
-      navigate.push('/login');
+      // login 페이지로 이동
+      navigate('/login');
     })
     .catch((error) => {
       console.error('There was a problem with the fetch operation:', error);
