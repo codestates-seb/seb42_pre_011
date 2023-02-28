@@ -1,119 +1,127 @@
-import styled from 'styled-components';
-import Container from '../components/Container';
-import { Input } from '../components/question/Input';
-import { Button } from '../components/question/Button';
-import { InputLabel, EditorInputWrapper, EditorInput } from '../components/question/EditorInputWrapper';
-import { useEffect, useState, useRef } from 'react';
-import { useForm } from 'react-hook-form';
-import { Tag } from '../components/question/Tag';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import styled from "styled-components";
+import { Input } from "../components/question/Input";
+import { Button } from "../components/question/Button";
+import {
+  InputLabel,
+  EditorInputWrapper,
+  EditorInput,
+} from "../components/question/EditorInputWrapper";
+import { useEffect, useState, useRef } from "react";
+import { useForm } from "react-hook-form";
+import { Tag } from "../components/question/Tag";
+import axios from "axios";
+// import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Ask = () => {
-  const [ body1Active, setBody1Active ] = useState(false);
-  const [ body2Active, setBody2Active ] = useState(false);
-  const [ tagActive, setTagActive ] = useState(false);
-  const [ tags, setTags ] = useState([]);
-  const [ questionCont, setQuestionCont ] = useState({
-    title: '',
-    body: '',
-    tags: [],
+  const [body1Active, setBody1Active] = useState(false);
+  const [body2Active, setBody2Active] = useState(false);
+  const [tagActive, setTagActive] = useState(false);
+  const [tags, setTags] = useState([]);
+  const [questionCont, setQuestionCont] = useState({
+    // title: "",
+    questionContent: "",
+    // tags: [],
   });
-  const loginUserId = useSelector(state => state.loginUserInfo.loginUserInfo?.memberId);
+  // const loginUserId = useSelector(
+  //   (state) => state.loginUserInfo.loginUserInfo?.memberId
+  // );
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
   const titleSubmitButtonClick = (data) => {
     if (data.title.length < 10) {
-      alert('제목을 10자 이상 입력해주세요!');
+      alert("제목을 10자 이상 입력해주세요!");
       return;
     }
     setQuestionCont({
       ...questionCont,
-      title: data.title,
+      // title: data.title,
     });
     body1.current.getInstance().focus();
     setBody1Active(true);
-    window.scrollTo({top: 600, behavior: 'smooth'});
+    window.scrollTo({ top: 1100, behavior: "smooth" });
   };
-
+  
   const body1SubmitButtonClick = () => {
     setQuestionCont({
       ...questionCont,
-      body: body1.current.getInstance().getHTML(),
+      questionContent: body1.current.getInstance().getHTML(),
     });
     body2.current.getInstance().focus();
     setBody2Active(true);
-    window.scrollTo({top: 1040, behavior: 'smooth'});
-  }
+    window.scrollTo({ top: 1840, behavior: "smooth" });
+  };
 
   const body2SubmitButtonClick = () => {
     setQuestionCont({
       ...questionCont,
-      body: questionCont.body + body2.current.getInstance().getHTML(),
+      questionContent: questionCont.questionContent + body2.current.getInstance().getHTML(),
     });
     tag.current.focus();
     setTagActive(true);
-    window.scrollTo({top: 1200, behavior: 'smooth'});
-  }
+    window.scrollTo({ top: 2400, behavior: "smooth" });
+  };
 
   const tagSubmitButtonClick = () => {
     setQuestionCont({
       ...questionCont,
-      tags: tags,
+      // tags: tags,
     });
-  }
+  };
 
   const postButtonClick = async () => {
-    if (questionCont.title.length < 10) {
-      alert('제목을 10자 이상 입력해주세요!');
-      return;
-    };
-    if (questionCont.body.length < 30) {
-      alert('본문 내용을 30자 이상 입력해주세요!');
-      return;
-    };
+    // if (questionCont.title.length < 10) {
+    //   alert("제목을 10자 이상 입력해주세요!");
+    //   return;
+    // }
+    // if (questionCont.body.length < 30) {
+    //   alert("본문 내용을 30자 이상 입력해주세요!");
+    //   return;
+    // }
     return await axios({
-      method: 'POST',
-    //   url: `${process.env.REACT_APP_SERVER_URL}/questions?memberId=${loginUserId}`,
-    url: `{https://6037-122-43-246-215.jp.ngrok.io/questions/5/1}`,
+      method: "POST",
+        // url: `${process.env.REACT_APP_SERVER_URL}/questions?memberId=${loginUserId}`,
+      url: 'https://4410-122-43-246-215.jp.ngrok.io/questions',
       // params: {
       //   memberId: loginUserId
       // },
-      memberId: 6,
-      questionContent: {
+      data: {
+        memberId: 9,
+        // ...questionCont,
         ...questionCont
-      }
+      },
     })
-    .then(res => {
-      setQuestionCont({
-        title: '',
-        body: '',
-        tags: [],
+      .then((res) => {
+        setQuestionCont({
+          // title: '',
+          // memberId: "",
+          questionContent: "testest",
+          // tags: [],
+        });
+          // navigate(`/questions/${res.data.boardId}`);
+          navigate(`/questions`);
+      })
+      .catch((err) => {
+        console.error(err);
       });
-      navigate(`/questions/${res.data.boardId}`);
-    })
-    .catch(err => {
-      console.error(err)
-    });
   };
 
   const discardButtonClick = () => {
     setQuestionCont({
-      title: '',
-      body: '',
-      tags: [],
+      // title: "",
+      questionContent: "",
+      // tags: [],
     });
     navigate(`/questions`);
-  }
+  };
 
   const body1 = useRef();
   const body2 = useRef();
   const tag = useRef();
 
   useEffect(() => {
-    setTimeout(()=> {
+    setTimeout(() => {
       window.scrollTo(0, 0);
     }, 0);
   }, []);
@@ -122,9 +130,9 @@ const Ask = () => {
     <>
       <Main>
         <AskContainer>
-            <div className='askTitle'>
-          <h1>Ask a public question</h1>
-          <div className='askTitleBg'></div>
+          <div className="askTitle">
+            <h1>Ask a public question</h1>
+            <div className="askTitleBg"></div>
           </div>
         </AskContainer>
         <MainLeftRightWrapper>
@@ -132,116 +140,130 @@ const Ask = () => {
             <GuideLine>
               <h2>Writing a good question</h2>
               <p>
-                You’re ready to 
-                <a 
+                You’re ready to
+                <a
                   href="https://stackoverflow.com/help/how-to-ask"
-                  target='_blank'
-                  rel='noreferrer'
-                > ask </a> 
-                a <a 
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {" "}
+                  ask{" "}
+                </a>
+                a{" "}
+                <a
                   href="https://stackoverflow.com/help/on-topic"
-                  target='_blank'
-                  rel='noreferrer'
-                > programming-related question </a>
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {" "}
+                  programming-related question{" "}
+                </a>
                 and this form will help guide you through the process.
               </p>
               <p>
-                Looking to ask a non-programming question? See 
-                <a 
+                Looking to ask a non-programming question? See
+                <a
                   href="https://stackexchange.com/sites#technology"
-                  target='_blank'
-                  rel='noreferrer'
-                > the topics here </a> to find a relevant site.
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {" "}
+                  the topics here{" "}
+                </a>{" "}
+                to find a relevant site.
               </p>
               <h5>Steps</h5>
               <ul>
-                  <li>Summarize your problem in a one-line title.</li>
-                  <li>Describe your problem in more detail.</li>
-                  <li>Describe what you tried and what you expected to happen.</li>
-                  <li>Add “tags” which help surface your question to members of the community.</li>
-                  <li>Review your question and post it to the site.</li>
+                <li>Summarize your problem in a one-line title.</li>
+                <li>Describe your problem in more detail.</li>
+                <li>
+                  Describe what you tried and what you expected to happen.
+                </li>
+                <li>
+                  Add “tags” which help surface your question to members of the
+                  community.
+                </li>
+                <li>Review your question and post it to the site.</li>
               </ul>
             </GuideLine>
-            <form onSubmit={handleSubmit(data => (titleSubmitButtonClick(data)))}>
-              <InputWrapper className='active'>
-                <InputLabel 
-                  title='Title'
-                  label='Be specific and imagine you’re asking a question to another person.'
+            <form
+              onSubmit={handleSubmit((data) => titleSubmitButtonClick(data))}
+            >
+              <InputWrapper className="active">
+                <InputLabel
+                  title="Title"
+                  label="Be specific and imagine you’re asking a question to another person."
                 />
                 <Input
-                  placeholder='e.g. Is there an R function for finding the index of an element in a vector?'
-                  padding='0.78rem 0.91rem'
-                  width='100%'
-                  register={register('title')}
-                  onFocus={() => {window.scrollTo({top: 400, behavior: 'smooth'})}}
+                  placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
+                  padding="0.78rem 0.91rem"
+                  width="100%"
+                  register={register("title")}
+                  onFocus={() => {
+                    window.scrollTo({ top: 400, behavior: "smooth" });
+                  }}
                 />
-                <Button 
-                buttonFunctionType='submit'
-                buttonType='type2'
-                buttonName='Next'
-                width='4.96rem'
-                height='3.79rem'
+                <Button
+                  buttonFunctionType="submit"
+                  buttonType="type2"
+                  buttonName="Next"
+                  width="4.96rem"
+                  height="3.79rem"
                 />
               </InputWrapper>
             </form>
-            <InputWrapper className={body1Active ? 'active' : null}>
-              <InputLabel 
-                title='What are the details of your problem?'
-                label='Introduce the problem and expand on what you put in the title. Minimum 20 characters.'
+            <InputWrapper className={body1Active ? "active" : null}>
+              <InputLabel
+                title="What are the details of your problem?"
+                label="Introduce the problem and expand on what you put in the title. Minimum 20 characters."
               />
-              <EditorInput 
-                ref={body1}
-              />
+              <EditorInput ref={body1} />
               <Button
                 onClick={body1SubmitButtonClick}
-                buttonType='type2'
-                buttonName='Next'
-                width='4.96rem'
-                height='3.79rem'
-                />
+                buttonType="type2"
+                buttonName="Next"
+                width="4.96rem"
+                height="3.79rem"
+              />
             </InputWrapper>
-            <InputWrapper className={body2Active ? 'active' : null}>
+            <InputWrapper className={body2Active ? "active" : null}>
               <EditorInputWrapper
-                title='What did you try and what were you expecting?'
-                label='Describe what you tried, what you expected to happen, and what actually resulted. Minimum 20 characters.'
+                title="What did you try and what were you expecting?"
+                label="Describe what you tried, what you expected to happen, and what actually resulted. Minimum 20 characters."
                 ref={body2}
               />
-              <Button 
+              <Button
                 onClick={body2SubmitButtonClick}
-                buttonType='type2'
-                buttonName='Next'
-                width='4.96rem'
-                height='3.79rem'
-                />
+                buttonType="type2"
+                buttonName="Next"
+                width="4.96rem"
+                height="3.79rem"
+              />
             </InputWrapper>
             <div>
-              <InputWrapper className={tagActive ? 'active' : null}>
-                <InputLabel 
-                  title='Tags'
-                  label='Add up to 5 tags to describe what your question is about. Start typing to see suggestions.'
+              <InputWrapper className={tagActive ? "active" : null}>
+                <InputLabel
+                  title="Tags"
+                  label="Add up to 5 tags to describe what your question is about. Start typing to see suggestions."
                 />
-                <Tag 
-                  ref={tag} 
-                  tags={tags}
-                  setTags={setTags}
-                />
-                <Button 
+                <Tag ref={tag} tags={tags} setTags={setTags} />
+                <Button
                   onClick={tagSubmitButtonClick}
-                  buttonType='type2'
-                  buttonName='Next'
-                  width='4.96rem'
-                  height='3.79rem'
+                  buttonType="type2"
+                  buttonName="Next"
+                  width="4.96rem"
+                  height="3.79rem"
                 />
               </InputWrapper>
             </div>
             <ButtonWrapper>
-              <Button 
+              <Button
                 onClick={postButtonClick}
-                buttonType='type2'
-                buttonName='Post your question'
-                width='12.98rem'
-                height='3.79rem'
-                />
+                buttonType="type2"
+                buttonName="Post your question"
+                width="12.98rem"
+                height="3.79rem"
+              />
               <DiscardButton onClick={discardButtonClick}>
                 Discard draft
               </DiscardButton>
@@ -250,7 +272,7 @@ const Ask = () => {
         </MainLeftRightWrapper>
       </Main>
     </>
-  )
+  );
 };
 
 export default Ask;
@@ -280,7 +302,7 @@ const AskContainer = styled.div`
       background-image: url("https://cdn.sstatic.net/Img/ask/background.svg?v=2e9a8205b368");
     }
   }
-  `
+`;
 
 const MainTop = styled.div`
   display: flex;
@@ -288,7 +310,7 @@ const MainTop = styled.div`
   height: 13rem;
   display: flex;
   align-items: center;
-  background-image: url('/image/WriteBg.svg');
+  background-image: url("/image/WriteBg.svg");
   background-repeat: no-repeat;
   background-position: right;
   margin-top: -2rem;
@@ -301,7 +323,6 @@ const MainTop = styled.div`
     margin: 2.4rem 0 2.7rem;
   }
 `;
-
 
 const MainLeftRightWrapper = styled.div`
   display: flex;
