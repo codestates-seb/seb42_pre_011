@@ -8,7 +8,6 @@ spring:
     username:
     password:
 
-
   jpa:
     hibernate:
       ddl-auto: update # (1) ??? ?? ??  update -> create 변ㄱ
