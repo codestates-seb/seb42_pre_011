@@ -173,7 +173,7 @@ const Detail = () => {
       setQuestion(res.data.data.question);
       setAnswers(res.data.data.answers);
     });
-  }, []);
+  }, [id]);
 
   return (
     <>
