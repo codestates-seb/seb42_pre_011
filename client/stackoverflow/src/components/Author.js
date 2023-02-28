@@ -24,11 +24,11 @@ const UploadTime = styled.time`
   font-size: 12px;
 `;
 
-const Author = () => {
+const Author = ({ memberId, createdAt }) => {
   return (
     <AuthorContainer>
-      <AuthorInfo>hyunhoh</AuthorInfo>
-      <UploadTime>asked 1 min ago</UploadTime>
+      <AuthorInfo>{memberId}</AuthorInfo>
+      <UploadTime>{createdAt}</UploadTime>
     </AuthorContainer>
   );
 };

@@ -1,5 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import Container from '../components/Container';
 import Sidebar from '../components/Sidebar';
@@ -159,13 +161,27 @@ const AnswersBody = styled.div`
 `;
 
 const Detail = () => {
+  const [question, setQuestion] = useState({});
+  const [answers, setAnswers] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `http://3.39.174.236:8080/questions/${id}/1`,
+    }).then(res => {
+      setQuestion(res.data.data.question);
+      setAnswers(res.data.data.answers);
+    });
+  }, []);
+
   return (
     <>
       <Container>
         <Sidebar></Sidebar>
         <QuestionDetailMainContainer>
           <QuestionHeader>
-            <h1>this is question detail title long</h1>
+            <h1>{question.questionContent}</h1>
             <AskButton>
               <Link to="/ask">Ask Question</Link>
             </AskButton>
@@ -173,29 +189,23 @@ const Detail = () => {
           <QuestionStats>
             <div className="asked-at">
               <span>Asked</span>
-              <time>4 years, 8 months ago</time>
+              <time>{question.createdAt}</time>
             </div>
             <div className="modified-at">
               <span>Modified</span>
-              <time>4 years, 1 month ago</time>
+              <time>{question.modifiedAt}</time>
             </div>
             <div className="view-stats">
               <span>Viewed</span>
-              <span>185 times</span>
+              <span>{question.viewCount} times</span>
             </div>
           </QuestionStats>
           <div className="detail-main">
             <QuestionBody>
-              <VoteBar></VoteBar>
+              <VoteBar
+                total={question.likeCount - question.hateCount}></VoteBar>
               <QuestionContent>
-                <DetailContainer>
-                  How do I display an alert dialog in flutter without user
-                  interaction? I have a Widget that shows a ListView. When a
-                  specific condition is true, I want to display an alert dialog
-                  within the same widget (everything is a widget in Flutter,
-                  right?). So no user interaction is needed. this is the build
-                  method of my widget:
-                </DetailContainer>
+                <DetailContainer>{question.questionContent}</DetailContainer>
                 <TagsContainer>
                   <ul>
                     <Tag></Tag>
@@ -209,7 +219,7 @@ const Detail = () => {
                   </EditContainer>
                   <AuthorContainer>
                     <AuthorAskedTime>
-                      asked<span>Jun 5, 2018 at 12:40</span>
+                      asked<span>{question.createdAt}</span>
                     </AuthorAskedTime>
                     <AuthorAvatar>
                       <img
@@ -217,14 +227,14 @@ const Detail = () => {
                         alt="Cris's avatar"></img>
                     </AuthorAvatar>
                     <AuthorDetail>
-                      <a>Cris</a>
+                      <a>{question.memberId}</a>
                     </AuthorDetail>
                   </AuthorContainer>
                 </InfoContainer>
               </QuestionContent>
             </QuestionBody>
             <AnswersBody>
-              <AnswersList></AnswersList>
+              <AnswersList answers={answers}></AnswersList>
               <AnswerEditor></AnswerEditor>
             </AnswersBody>
           </div>

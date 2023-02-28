@@ -10,11 +10,15 @@ const ListContainer = styled.ol`
   list-style: none;
 `;
 
-const QuestionsList = () => {
-  return (
+const QuestionsList = ({ questions }) => {
+  return questions.length ? (
     <ListContainer>
-      <QuestionItem></QuestionItem>
+      {questions.map(ele => (
+        <QuestionItem key={ele.questionId} ele={ele}></QuestionItem>
+      ))}
     </ListContainer>
+  ) : (
+    'Loading...'
   );
 };
 
