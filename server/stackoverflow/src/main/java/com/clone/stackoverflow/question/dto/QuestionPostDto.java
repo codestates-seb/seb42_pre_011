@@ -1,6 +1,5 @@
 package com.clone.stackoverflow.question.dto;
-
-import com.clone.stackoverflow.tag.Tag;
+import com.clone.stackoverflow.tag.entity.Tag;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +10,7 @@ import java.util.List;
 @Setter
 public class QuestionPostDto {
     private Long memberId;
+    private String questionTitle;
     private String questionContent;
     private List<Tag> tags = new ArrayList<>();
 }

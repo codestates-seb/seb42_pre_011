@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/votes")
 @AllArgsConstructor
@@ -18,5 +19,4 @@ public class VoteController {
         voteService.vote(voteMapper.votePostDtoToVote(votePostDto));
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

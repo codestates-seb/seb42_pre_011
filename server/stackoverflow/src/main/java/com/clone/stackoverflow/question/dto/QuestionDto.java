@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 public class QuestionDto {
     private Long questionId;
     private Long groupId;
+    private String name;
+    private String questionTitle;
     private String questionContent;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;

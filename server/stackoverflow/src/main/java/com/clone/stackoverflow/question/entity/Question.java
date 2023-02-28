@@ -22,6 +22,7 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long questionId;
     private Long groupId;
+    private String questionTitle;
     private String questionContent;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;

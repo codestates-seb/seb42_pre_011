@@ -15,7 +15,6 @@ public class VoteService {
 
     public void vote(Vote vote) {
         Long voteId = vote.getVoteId();
-
         Member member = vote.getMember();
         Question question = vote.getQuestion();
         Answer answer = vote.getAnswer();
@@ -24,9 +23,7 @@ public class VoteService {
             voteRepository.save(vote);
         }
         else {
-            System.out.println("VoteService.vote");
-            voteRepository.deleteById(voteId);
+            voteRepository.deleteByAnswerAndMember(answer, member);
         }
-        //삭제안됨
     }
 }

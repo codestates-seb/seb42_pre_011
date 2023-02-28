@@ -7,9 +7,50 @@ import {
 import { Input } from "../components/question/Input";
 import { Button } from "../components/question/Button";
 import Tag from "../components/Tag";
+import { useEffect, useState, useRef } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 
-const Edit = () => {
+
+const Edit = (props) => {
+  // const isLogin = useSelector(state => state.loginStatus.status);
+  const navigate = useNavigate();
+  // const goLogin = () => {
+  //   alert('로그인 후에 이용해주세요. 로그인 페이지로 이동합니다.');
+  //   navigate('/users/login');
+  // };
+
+  // const location = useLocation();
+  // const memberId = location.pathname.split('/')[2];
+  // const [ title, setTitle ] = useState(location.state.title);
+  // const [ tags, setTags ] = useState(location.state.tags);
+
+  const editorRef= useRef();
+
+const saveEditButtonClick = async () => {
+  await axios({
+    method: 'PATCH',
+    url: 'http://3.39.174.236:8080/questions/24/9',
+    // url: `${process.env.REACT_APP_SERVER_URL}/questions/${questionId}/${memberId}`,
+    data: {
+      // title,
+      questionContent: editorRef.current.getInstance().getHTML(),
+      // tags,
+    }
+  })
+  .then(res => {
+    navigate(`/questions`);
+  })
+  .catch(err => {
+    console.error(err);
+  })
+}
+
+const cancelButtonClick = () => {
+  navigate(`/questions`);
+};
+
   return (
     <Container>
       <Sidebar></Sidebar>
@@ -20,7 +61,8 @@ const Edit = () => {
         </div>
         <div>
           <InputLabel title="Body" />
-          <EditorInput />
+          <EditorInput ref={editorRef} />
+          <div>{props.questionContent}</div>
         </div>
         <div>
           <InputLabel title="Tags" />
@@ -37,12 +79,14 @@ const Edit = () => {
         </div>
         <div className="buttonWrapper">
           <Button
+          onClick={saveEditButtonClick}
             buttonType="type2"
             buttonName="Save edits"
             width="8.04rem"
             height="3.79rem"
           />
           <Button
+          onClick={cancelButtonClick}
             buttonType="type4"
             buttonName="Cancel"
             width="8.04rem"
