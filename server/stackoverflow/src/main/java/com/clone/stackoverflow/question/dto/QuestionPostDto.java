@@ -10,6 +10,7 @@ import java.util.List;
 @Setter
 public class QuestionPostDto {
     private Long memberId;
+    private String questionTitle;
     private String questionContent;
     private List<Tag> tags = new ArrayList<>();
 }

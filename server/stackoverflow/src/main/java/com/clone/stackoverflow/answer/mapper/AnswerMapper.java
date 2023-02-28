@@ -47,14 +47,13 @@ public class AnswerMapper {
         AnswerResponseDto answerResponseDto = new AnswerResponseDto();
         answerResponseDto.setAnswerId(answer.getAnswerId());
         answerResponseDto.setGroupId(answer.getGroupId());
+        answerResponseDto.setName(answer.getMember().getName());
         answerResponseDto.setAnswerContent(answer.getAnswerContent());
         answerResponseDto.setCreatedAt(answer.getCreatedAt());
         answerResponseDto.setModifiedAt(answer.getModifiedAt());
         answerResponseDto.setMemberId(answer.getMember().getMemberId());
         answerResponseDto.setLikeCount(voteRepository.countAllByAnswerAndVoteTypeNot(answer, Vote.VoteType.HATE));
         answerResponseDto.setHateCount(voteRepository.countAllByAnswerAndVoteTypeNot(answer, Vote.VoteType.LIKE));
-        System.out.println("//////////////////////////////////////////////////////////////////////////////////////");
-        System.out.println(voteRepository.findByAnswerAndMember(answer, answer.getMember()));
         if(voteRepository.findByAnswerAndMember(answer, answer.getMember()) != null) {
             answerResponseDto.setIsVote(true);
         } else {
