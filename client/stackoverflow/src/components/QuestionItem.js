@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import MetaTagsList from './MetaTagsList';
 import Author from './Author';
@@ -31,6 +32,10 @@ const QuestionStats = styled.div`
 const QuestionSummary = styled.div`
   flex-grow: 1;
   max-width: 100%;
+
+  a {
+    text-decoration: none;
+  }
 
   .question-title {
     color: hsl(206, 100%, 40%);
@@ -70,7 +75,9 @@ const QuestionItem = ({ ele }) => {
         <span className="view-stats">{ele.viewCount} views</span>
       </QuestionStats>
       <QuestionSummary>
-        <h3 className="question-title">{ele.questionContent}</h3>
+        <Link to={`/${ele.questionId}`}>
+          <h3 className="question-title">{ele.questionContent}</h3>
+        </Link>
         <div className="question-content">{ele.questionContent}</div>
         <QuestionMeta>
           <MetaTagsList></MetaTagsList>
