@@ -21,8 +21,8 @@ const Edit = (props) => {
   //   navigate('/users/login');
   // };
 
-  const location = useLocation();
-  const boardId = location.pathname.split('/')[2];
+  // const location = useLocation();
+  // const memberId = location.pathname.split('/')[2];
   // const [ title, setTitle ] = useState(location.state.title);
   // const [ tags, setTags ] = useState(location.state.tags);
 
@@ -32,6 +32,7 @@ const saveEditButtonClick = async () => {
   await axios({
     method: 'PATCH',
     url: 'https://4410-122-43-246-215.jp.ngrok.io/questions/24/9',
+    // url: `${process.env.REACT_APP_SERVER_URL}/questions/${questionId}/${memberId}`,
     data: {
       // title,
       questionContent: editorRef.current.getInstance().getHTML(),
