@@ -53,6 +53,8 @@ public class WebConfig {
                     .permitAll()
                     .antMatchers(HttpMethod.GET, "/questions")
                     .permitAll()
+                    .antMatchers("/login")
+                    .permitAll()
 //                    .antMatchers("/answers/**")
 //                    .permitAll()
 //                    .antMatchers( "/votes/**")
