@@ -76,7 +76,7 @@ const QuestionItem = ({ ele }) => {
       </QuestionStats>
       <QuestionSummary>
         <Link to={`/${ele.questionId}`}>
-          <h3 className="question-title">{ele.questionContent}</h3>
+          <h3 className="question-title">{ele.questionTitle}</h3>
         </Link>
         <div className="question-content">{ele.questionContent}</div>
         <QuestionMeta>
