@@ -81,7 +81,7 @@ const QuestionItem = ({ ele }) => {
         <div className="question-content">{ele.questionContent}</div>
         <QuestionMeta>
           <MetaTagsList></MetaTagsList>
-          <Author memberId={ele.memberId} createdAt={ele.createdAt}></Author>
+          <Author name={ele.name} createdAt={ele.createdAt}></Author>
         </QuestionMeta>
       </QuestionSummary>
     </ItemContainer>
