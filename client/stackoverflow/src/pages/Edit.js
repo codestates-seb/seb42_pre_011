@@ -6,7 +6,7 @@ import {
 } from "../components/question/EditorInputWrapper";
 import { Input } from "../components/question/Input";
 import { Button } from "../components/question/Button";
-import Tag from "../components/Tag";
+// import Tag from "../components/Tag";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
