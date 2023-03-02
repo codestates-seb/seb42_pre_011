@@ -24,7 +24,7 @@ const SidebarStickyContainer = styled.div`
     cursor: pointer;
   }
 
-  a:acitve {
+  a:active {
     font-weight: bold;
     background-color: hsl(210, 8%, 95%);
     color: hsl(210, 8%, 5%);
