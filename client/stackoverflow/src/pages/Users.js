@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Container from '../components/Container';
@@ -38,6 +40,15 @@ const UsersController = styled.div`
 `;
 
 const Users = () => {
+  const [usersList, setUsersList] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `http://3.39.174.236:8080/members?page=1&size=100`,
+    }).then(res => setUsersList(res.data.data));
+  }, []);
+
   return (
     <>
       <Container>
@@ -47,7 +58,7 @@ const Users = () => {
           <UsersController>
             <input placeholder="Filter by user"></input>
           </UsersController>
-          <UsersList></UsersList>
+          <UsersList usersList={usersList}></UsersList>
         </UsersMainContainer>
       </Container>
     </>

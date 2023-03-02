@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import UserItem from './UserItem';
 
 const ListContainer = styled.div`
   width: 100%;
@@ -7,10 +8,14 @@ const ListContainer = styled.div`
   gap: 12px;
 `;
 
-const UsersList = () => {
+const UsersList = ({ usersList }) => {
   return (
     <>
-      <ListContainer></ListContainer>
+      <ListContainer>
+        {usersList.map(ele => (
+          <UserItem key={ele.memberId} ele={ele}></UserItem>
+        ))}
+      </ListContainer>
     </>
   );
 };

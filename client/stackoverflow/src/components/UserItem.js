@@ -29,13 +29,13 @@ const ItemContainer = styled.div`
   }
 `;
 
-const UserItem = () => {
+const UserItem = ({ ele }) => {
   return (
     <ItemContainer>
       <div className="user-avatar"></div>
       <div className="user-detail">
-        <div className="user-name"></div>
-        <div className="user-email"></div>
+        <div className="user-name">{ele.name}</div>
+        <div className="user-email">{ele.email}</div>
       </div>
     </ItemContainer>
   );
