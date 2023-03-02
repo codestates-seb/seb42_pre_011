@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import { FaUser } from 'react-icons/fa';
 import Container from '../components/Container';
 import Sidebar from '../components/Sidebar';
 import { MainContainer } from './Questions';
@@ -136,7 +137,7 @@ const AuthorAvatar = styled.div`
   height: 32px;
   cursor: pointer;
 
-  > img {
+  > svg {
     width: 32px;
     height: 32px;
   }
@@ -222,9 +223,7 @@ const Detail = () => {
                       asked<span>{question.createdAt}</span>
                     </AuthorAskedTime>
                     <AuthorAvatar>
-                      <img
-                        src="https://www.gravatar.com/avatar/e4cdd5ac29579af2c5f457df6fcb89f6?s=64&d=identicon&r=PG"
-                        alt="Cris's avatar"></img>
+                      <FaUser></FaUser>
                     </AuthorAvatar>
                     <AuthorDetail>
                       <a>{question.name}</a>

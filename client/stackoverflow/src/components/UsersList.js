@@ -9,14 +9,14 @@ const ListContainer = styled.div`
 `;
 
 const UsersList = ({ usersList }) => {
-  return (
-    <>
-      <ListContainer>
-        {usersList.map(ele => (
-          <UserItem key={ele.memberId} ele={ele}></UserItem>
-        ))}
-      </ListContainer>
-    </>
+  return usersList.length ? (
+    <ListContainer>
+      {usersList.map(ele => (
+        <UserItem key={ele.memberId} ele={ele}></UserItem>
+      ))}
+    </ListContainer>
+  ) : (
+    'Loading...'
   );
 };
 
