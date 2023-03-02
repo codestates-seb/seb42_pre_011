@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import MetaTagsList from './MetaTagsList';
 import Author from './Author';
-import { Viewer } from '@toast-ui/react-editor';
 
 const ItemContainer = styled.li`
   display: flex;
@@ -79,7 +78,6 @@ const QuestionItem = ({ ele }) => {
         <Link to={`/${ele.questionId}`}>
           <h3 className="question-title">{ele.questionTitle}</h3>
         </Link>
-        <div className="question-content">{<Viewer initialValue={ele.questionContent} />}</div>
         <QuestionMeta>
           <MetaTagsList></MetaTagsList>
           <Author name={ele.name} createdAt={ele.createdAt}></Author>
