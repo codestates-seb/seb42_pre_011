@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
+import { useRef, useState } from 'react';
+import axios from 'axios';
 
 const EditorContainer = styled.div`
   width: 100%;
@@ -37,6 +39,22 @@ const PostBtn = styled.button`
 `;
 
 const AnswerEditor = () => {
+  const [answer, setAnswer] = useState('');
+  const editorRef = useRef();
+
+  const handleEditorChange = () => {
+    const data = editorRef.current.getInstance().getMarkdown();
+    setAnswer(data);
+  };
+
+  const handlePostAnswer = answer => {
+    axios({
+      method: 'post',
+      url: 'http://3.39.174.236:8080/answers',
+      data: { member_id: 1, answer_content: answer },
+    }).then(res => console.log(res));
+  };
+
   return (
     <EditorContainer>
       <h2>Your Answer</h2>
@@ -45,9 +63,13 @@ const AnswerEditor = () => {
         initialEditType="markdown"
         initialValue="Write your answer"
         previewStyle="vertical"
-        useCommandShortcut={true}></Editor>
+        useCommandShortcut={true}
+        ref={editorRef}
+        onChange={handleEditorChange}></Editor>
       <PostBtnWrapper>
-        <PostBtn>Post Your Answer</PostBtn>
+        <PostBtn onClick={() => handlePostAnswer(answer)}>
+          Post Your Answer
+        </PostBtn>
       </PostBtnWrapper>
     </EditorContainer>
   );
