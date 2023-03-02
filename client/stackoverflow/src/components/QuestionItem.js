@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import MetaTagsList from './MetaTagsList';
 import Author from './Author';
@@ -32,6 +33,10 @@ const QuestionSummary = styled.div`
   flex-grow: 1;
   max-width: 100%;
 
+  a {
+    text-decoration: none;
+  }
+
   .question-title {
     color: hsl(206, 100%, 40%);
     margin-bottom: 0.3rem;
@@ -61,20 +66,22 @@ const QuestionMeta = styled.div`
   flex-wrap: wrap;
 `;
 
-const QuestionItem = () => {
+const QuestionItem = ({ ele }) => {
   return (
     <ItemContainer>
       <QuestionStats>
-        <span className="vote-stats">1 votes</span>
+        <span className="vote-stats">{ele.likeCount} votes</span>
         <span className="answers-stats">1 answers</span>
-        <span className="view-stats">1 views</span>
+        <span className="view-stats">{ele.viewCount} views</span>
       </QuestionStats>
       <QuestionSummary>
-        <h3 className="question-title">how to make</h3>
-        <div className="question-content">this is quesion content</div>
+        <Link to={`/${ele.questionId}`}>
+          <h3 className="question-title">{ele.questionTitle}</h3>
+        </Link>
+        <div className="question-content">{ele.questionContent}</div>
         <QuestionMeta>
           <MetaTagsList></MetaTagsList>
-          <Author></Author>
+          <Author name={ele.name} createdAt={ele.createdAt}></Author>
         </QuestionMeta>
       </QuestionSummary>
     </ItemContainer>

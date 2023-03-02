@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import Container from '../components/Container';
 import React, { useState } from "react";
 import styled from "styled-components";
@@ -14,7 +15,7 @@ const LoginContainer = styled.div`
   width: 100%;
   height: 100vh;
   flex-direction: column;
-  margin-top: -280px;
+  margin-top: -380px;
 `;
 
 //로그인 폼 컨테이너
@@ -182,29 +183,65 @@ const BlueText = styled.span`
 
 
 const Login = () => {
+
+  // 이메일과 패스워드를 가져옴
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // 로그인 로직 구현
+  
+    // 이메일과 비밀번호 유효성 검사
     if (email === "") {
       setEmailError("The email is not a valid email address.");
     } else {
       setEmailError("");
     }
     if (password === "") {
-      setPasswordError("Password is incorrect.");
+      setPasswordError("Password is required.");
+    } else if (password.length < 8) {
+      setPasswordError("Password must be at least 8 characters.");
     } else {
       setPasswordError("");
     }
-    if (email !== "" && password !== "") {
-      console.log("로그인 성공");
-    }
-  };
-
+  
+    // 백엔드서버에 로그인 요청
+    fetch('http://3.39.174.236:8080/login', {
+      withCredentials: true,
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json;charset=utf-8"
+        , "ngrok-skip-browser-warning" : "1234"
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else if (response.status === 401) {
+        throw new Error('email 또는 password가 일치하지 않습니다.');
+      }
+    })  
+    .then(data => {
+      if (data) {
+        localStorage.setItem("accessToken", data.accessToken);
+        navigate('/');
+      } else {
+        console.error('No data returned from server');
+      }
+    })
+    .catch((error) => {
+      console.error('There was a problem with the fetch operation:', error);
+      alert(error.message);
+    });
+};
+  
   return (
     <>
       <Container>

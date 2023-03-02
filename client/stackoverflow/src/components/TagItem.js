@@ -34,19 +34,13 @@ const ItemContainer = styled.div`
   }
 `;
 
-const TagItem = () => {
+const TagItem = ({ ele }) => {
   return (
     <ItemContainer>
       <div className="tag-name">
-        <Tag></Tag>
+        <Tag name={ele.tagName}></Tag>
       </div>
-      <div className="tag-desc">
-        For questions about programming in ECMAScript (JavaScript/JS) and its
-        different dialects/implementations (except for ActionScript). Keep in
-        mind that JavaScript is NOT the same as Java! Include all labels that
-        are relevant to your question; e.g., [node.js], [jQuery], [JSON],
-        [ReactJS], [angular], [ember.js], [vue.js], [typescript], [svelte], etc.
-      </div>
+      <div className="tag-desc">{ele.tagContent}</div>
       <div className="tag-count">
         <span>123 questions</span>
       </div>

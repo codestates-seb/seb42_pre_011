@@ -18,10 +18,10 @@ const ItemContainer = styled.li`
   }
 `;
 
-const Tag = () => {
+const Tag = ({ name }) => {
   return (
     <>
-      <ItemContainer>javaScript</ItemContainer>
+      <ItemContainer>{name}</ItemContainer>
     </>
   );
 };

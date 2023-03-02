@@ -9,6 +9,7 @@ import lombok.*;
 public class AnswerResponseDto {
     private Long answerId;
     private Long groupId;
+    private String name;
     private String answerContent;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;

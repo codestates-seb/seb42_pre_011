@@ -16,15 +16,17 @@ const AnswersHeader = styled.div`
   }
 `;
 
-const AnswersList = () => {
-  return (
+const AnswersList = ({ answers }) => {
+  return answers.length ? (
     <>
       <AnswersHeader>
-        <h2>2 Answers</h2>
+        <h2>{answers.length} Answers</h2>
       </AnswersHeader>
-      <Answer></Answer>
+      {answers.map(ele => (
+        <Answer key={ele.answerId} ele={ele}></Answer>
+      ))}
     </>
-  );
+  ) : null;
 };
 
 export default AnswersList;

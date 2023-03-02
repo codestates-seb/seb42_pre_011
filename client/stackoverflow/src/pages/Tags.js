@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 import { MainContainer } from './Questions';
 import Container from '../components/Container';
@@ -72,6 +74,15 @@ const SortController = styled.div`
 `;
 
 const Tags = () => {
+  const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'http://3.39.174.236:8080/tags?page=1&size=100',
+    }).then(res => setTags(res.data.data));
+  }, []);
+
   return (
     <>
       <Container>
@@ -91,9 +102,7 @@ const Tags = () => {
               <div className="new-btn">New</div>
             </SortController>
           </TagsController>
-          <TagsList>
-            <TagItem></TagItem>
-          </TagsList>
+          <TagsList tags={tags}></TagsList>
         </TagsMainContainer>
       </Container>
     </>

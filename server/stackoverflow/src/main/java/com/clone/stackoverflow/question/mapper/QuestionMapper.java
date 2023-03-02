@@ -22,7 +22,8 @@ public class QuestionMapper {
     public Question questionPostDtoToQuestion(QuestionPostDto questionPostDto) {
         Question question = new Question();
         question.setQuestionContent(questionPostDto.getQuestionContent());
-        System.out.println(questionPostDto.getMemberId());
+        question.setQuestionTitle(questionPostDto.getQuestionTitle());
+
         Member member = memberRepository.findById(questionPostDto.getMemberId()).get();
         question.setMember(member);
         //태그
@@ -31,7 +32,9 @@ public class QuestionMapper {
 
     public Question questionPatchDtoToQuestion(QuestionPatchDto questionPatchDto, Long questionId) {
         Question question = questionRepository.findById(questionId).get();
-
+        if(questionPatchDto.getQuestionTitle() != null) {
+            question.setQuestionTitle(questionPatchDto.getQuestionTitle());
+        }
         if(questionPatchDto.getQuestionContent() != null) {
             question.setQuestionContent(questionPatchDto.getQuestionContent());
         }
@@ -42,8 +45,10 @@ public class QuestionMapper {
     public QuestionDto questionToQuestionResponseDto(Question question) {
         QuestionDto questionDto = new QuestionDto();
         questionDto.setQuestionId(question.getQuestionId());
+        questionDto.setQuestionTitle(question.getQuestionTitle());
         questionDto.setQuestionContent(question.getQuestionContent());
         questionDto.setGroupId(question.getGroupId());
+        questionDto.setName(question.getMember().getName());
         questionDto.setCreatedAt(question.getCreatedAt());
         questionDto.setModifiedAt(question.getModifiedAt());
         questionDto.setQuestionStatus(question.getQuestionStatus());

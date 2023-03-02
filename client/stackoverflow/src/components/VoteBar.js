@@ -41,7 +41,7 @@ const VoteUpButton = styled(VoteButton)``;
 
 const VoteDownButton = styled(VoteButton)``;
 
-const VoteBar = () => {
+const VoteBar = ({ total }) => {
   return (
     <VoteBarContainer>
       <div>
@@ -50,7 +50,7 @@ const VoteBar = () => {
             <path d="M2 25h32L18 9 2 25Z"></path>
           </svg>
         </VoteUpButton>
-        <VoteCount>4</VoteCount>
+        <VoteCount>{`${total}`}</VoteCount>
         <VoteDownButton>
           <svg>
             <path d="M2 11h32L18 27 2 11Z"></path>
