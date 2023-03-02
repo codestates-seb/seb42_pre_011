@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { MainContainer } from './Questions';
 import Container from '../components/Container';
 import Sidebar from '../components/Sidebar';
-import TagItem from '../components/TagItem';
 import TagsList from '../components/TagsList';
 
 const TagsMainContainer = styled(MainContainer)`
