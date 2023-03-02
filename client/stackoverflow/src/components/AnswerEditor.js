@@ -38,7 +38,7 @@ const PostBtn = styled.button`
   }
 `;
 
-const AnswerEditor = () => {
+const AnswerEditor = ({ id }) => {
   const [answer, setAnswer] = useState('');
   const editorRef = useRef();
 
@@ -51,7 +51,7 @@ const AnswerEditor = () => {
     axios({
       method: 'post',
       url: 'http://3.39.174.236:8080/answers',
-      data: { member_id: 1, answer_content: answer },
+      data: { memberId: 1, questionId: id, answerContent: answer },
     }).then(res => console.log(res));
   };
 
