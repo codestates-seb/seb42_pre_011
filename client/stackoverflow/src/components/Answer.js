@@ -117,7 +117,7 @@ const Answer = ({ ele }) => {
                 alt="Cris's avatar"></img>
             </AuthorAvatar>
             <AuthorDetail>
-              <a>{ele.memberId}</a>
+              <a>{ele.name}</a>
             </AuthorDetail>
           </AuthorContainer>
         </InfoContainer>
