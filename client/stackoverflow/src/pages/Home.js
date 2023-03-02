@@ -30,9 +30,7 @@ const Home = () => {
               <Link to="/ask">Ask Question</Link>
             </AskButton>
           </HeadContainer>
-          <QuestionsList questions={questions}>
-            <QuestionItem></QuestionItem>
-          </QuestionsList>
+          <QuestionsList questions={questions}></QuestionsList>
         </MainContainer>
       </Container>
     </>

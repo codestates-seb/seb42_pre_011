@@ -9,11 +9,15 @@ const ListContainer = styled.div`
   gap: 12px;
 `;
 
-const TagsList = () => {
-  return (
+const TagsList = ({ tags }) => {
+  return tags.length ? (
     <ListContainer>
-      <TagItem></TagItem>
+      {tags.map(ele => (
+        <TagItem key={ele.tagId} ele={ele}></TagItem>
+      ))}
     </ListContainer>
+  ) : (
+    'Loading...'
   );
 };
 
