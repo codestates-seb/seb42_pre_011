@@ -19,7 +19,7 @@ const Ask = () => {
   const [tagActive, setTagActive] = useState(false);
   const [tags, setTags] = useState([]);
   const [questionCont, setQuestionCont] = useState({
-    // title: "",
+    questionTitle: "",
     questionContent: "",
     // tags: [],
   });
@@ -36,7 +36,7 @@ const Ask = () => {
     }
     setQuestionCont({
       ...questionCont,
-      // title: data.title,
+      questionTitle: data.title,
     });
     body1.current.getInstance().focus();
     setBody1Active(true);
@@ -94,9 +94,9 @@ const Ask = () => {
     })
       .then((res) => {
         setQuestionCont({
-          // title: '',
+          questionTitle: "",
           // memberId: "",
-          questionContent: "testest",
+          questionContent: "",
           // tags: [],
         });
           // navigate(`/questions/${res.data.boardId}`);
@@ -109,7 +109,7 @@ const Ask = () => {
 
   const discardButtonClick = () => {
     setQuestionCont({
-      // title: "",
+      questionTitle: "",
       questionContent: "",
       // tags: [],
     });
