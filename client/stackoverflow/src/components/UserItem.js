@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { FaUser } from 'react-icons/fa';
+
 const ItemContainer = styled.div`
   overflow: hidden;
   padding: 5px 6px 7px 7px;
@@ -32,7 +34,7 @@ const ItemContainer = styled.div`
 const UserItem = ({ ele }) => {
   return (
     <ItemContainer>
-      <div className="user-avatar"></div>
+      <FaUser className="user-avatar"></FaUser>
       <div className="user-detail">
         <div className="user-name">{ele.name}</div>
         <div className="user-email">{ele.email}</div>
