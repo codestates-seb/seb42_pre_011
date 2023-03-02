@@ -11,6 +11,7 @@ import AskButton from '../components/AskButton';
 import Tag from '../components/Tag';
 import AnswersList from '../components/AnswersList';
 import AnswerEditor from '../components/AnswerEditor';
+import { Viewer } from '@toast-ui/react-editor';
 
 const QuestionDetailMainContainer = styled(MainContainer)`
   width: calc(100% - 164px);
@@ -181,7 +182,7 @@ const Detail = () => {
         <Sidebar></Sidebar>
         <QuestionDetailMainContainer>
           <QuestionHeader>
-            <h1>{question.questionContent}</h1>
+            <h1>{question.questionTitle}</h1>
             <AskButton>
               <Link to="/ask">Ask Question</Link>
             </AskButton>
@@ -205,7 +206,7 @@ const Detail = () => {
               <VoteBar
                 total={question.likeCount - question.hateCount}></VoteBar>
               <QuestionContent>
-                <DetailContainer>{question.questionContent}</DetailContainer>
+                <DetailContainer>{question.questionContent && <Viewer initialValue={question.questionContent} />}</DetailContainer>
                 <TagsContainer>
                   <ul>
                     <Tag></Tag>
@@ -214,7 +215,7 @@ const Detail = () => {
                 <InfoContainer>
                   <EditContainer>
                     <button>Share</button>
-                    <button>Edit</button>
+                    <button onclink="location.href='/Edit'">Edit</button>
                     <button>Follow</button>
                   </EditContainer>
                   <AuthorContainer>
