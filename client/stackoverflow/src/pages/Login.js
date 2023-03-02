@@ -230,7 +230,7 @@ const Login = () => {
     })  
     .then(data => {
       if (data) {
-        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("accessToken", data.token);
         navigate('/');
       } else {
         console.error('No data returned from server');
