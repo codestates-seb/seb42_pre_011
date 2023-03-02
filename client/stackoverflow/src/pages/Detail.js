@@ -181,7 +181,7 @@ const Detail = () => {
         <Sidebar></Sidebar>
         <QuestionDetailMainContainer>
           <QuestionHeader>
-            <h1>{question.questionContent}</h1>
+            <h1>{question.questionTitle}</h1>
             <AskButton>
               <Link to="/ask">Ask Question</Link>
             </AskButton>
@@ -197,7 +197,7 @@ const Detail = () => {
             </div>
             <div className="view-stats">
               <span>Viewed</span>
-              <span>{question.viewCount} times</span>
+              <span>{`${question.viewCount} times`}</span>
             </div>
           </QuestionStats>
           <div className="detail-main">
@@ -227,7 +227,7 @@ const Detail = () => {
                         alt="Cris's avatar"></img>
                     </AuthorAvatar>
                     <AuthorDetail>
-                      <a>{question.memberId}</a>
+                      <a>{question.name}</a>
                     </AuthorDetail>
                   </AuthorContainer>
                 </InfoContainer>
