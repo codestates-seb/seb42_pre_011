@@ -220,7 +220,7 @@ const Detail = () => {
                 <InfoContainer>
                   <EditContainer>
                     <button>Share</button>
-                    <button>Edit</button>
+                    <button onclink="location.href='/Edit'">Edit</button>
                     <button>Follow</button>
                   </EditContainer>
                   <AuthorContainer>
