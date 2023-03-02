@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Viewer } from '@toast-ui/react-editor';
 
 import VoteBar from './VoteBar';
 import { FaUser } from 'react-icons/fa';
@@ -101,7 +102,9 @@ const Answer = ({ ele }) => {
     <AnswerContainer>
       <VoteBar total={ele.likeCount - ele.hateCount}></VoteBar>
       <AnswerContent>
-        <DetailContainer>{ele.answerContent}</DetailContainer>
+        <DetailContainer>
+          <Viewer initialValue={ele.answerContent}></Viewer>
+        </DetailContainer>
         <InfoContainer>
           <EditContainer>
             <button>Share</button>
