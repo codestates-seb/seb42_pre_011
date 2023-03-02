@@ -5,7 +5,6 @@ import axios from 'axios';
 import Container from '../components/Container';
 import Sidebar from '../components/Sidebar';
 import QuestionsList from '../components/QuestionsList';
-import QuestionItem from '../components/QuestionItem';
 import { HeadContainer, MainContainer } from './Questions';
 import AskButton from '../components/AskButton';
 
