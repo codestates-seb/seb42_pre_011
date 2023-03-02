@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Viewer } from '@toast-ui/react-editor';
 
 import { FaUser } from 'react-icons/fa';
 import Container from '../components/Container';
@@ -206,7 +207,11 @@ const Detail = () => {
               <VoteBar
                 total={question.likeCount - question.hateCount}></VoteBar>
               <QuestionContent>
-                <DetailContainer>{question.questionContent}</DetailContainer>
+                <DetailContainer>
+                  {question.questionContent && (
+                    <Viewer initialValue={question.questionContent}></Viewer>
+                  )}
+                </DetailContainer>
                 <TagsContainer>
                   <ul>
                     <Tag></Tag>
